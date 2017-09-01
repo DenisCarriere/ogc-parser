@@ -68,13 +68,13 @@ const select = xpath.useNamespaces({
  */
 function selectZooms (node) {
   const identifiers = select('//TileMatrixSet/TileMatrix/ows:Identifier', node)
-  let minzoom
-  let maxzoom
-  for (const identifier of identifiers) {
+  var minzoom
+  var maxzoom
+  identifiers.forEach(identifier => {
     const zoom = Number(identifier.textContent)
     if (zoom < minzoom || minzoom === undefined) minzoom = zoom
     if (zoom > maxzoom || maxzoom === undefined) maxzoom = zoom
-  }
+  })
   return {
     minzoom: minzoom,
     maxzoom: maxzoom
@@ -131,7 +131,7 @@ function layer (doc) {
  */
 function url (doc) {
   const getTile = select('string(//ows:Operation[@name="GetTile"]//ows:Get/@xlink:href)', doc, true)
-  let getCapabilities = select('string(//ows:Operation[@name="GetCapabilities"]//ows:Get/@xlink:href)', doc, true)
+  var getCapabilities = select('string(//ows:Operation[@name="GetCapabilities"]//ows:Get/@xlink:href)', doc, true)
   if (!getCapabilities) getCapabilities = select('string(//ServiceMetadataURL/@xlink:href)', doc, true)
   const parse = URL.parse(getCapabilities)
 

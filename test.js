@@ -10,8 +10,8 @@ const testIn = (filename) => path.join(__dirname, 'test', 'in', filename)
 const testOut = (filename) => path.join(__dirname, 'test', 'out', filename)
 
 // XML Documents
-const arcgis = fs.readFileSync(testIn('ArcGIS-online.xml'), 'utf8')
-const mapbox = fs.readFileSync(testIn('MapboxStudio.xml'), 'utf8')
+const arcgis = fs.readFileSync(testIn('wmts-arcgis.xml'), 'utf8')
+const mapbox = fs.readFileSync(testIn('wmts-mapbox.xml'), 'utf8')
 
 test('wmts -- ArcGIS Online', t => {
   const metadata = wmts(arcgis)

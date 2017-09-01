@@ -1,21 +1,37 @@
-export type BBox = [number, number, number, number]
-export interface Options extends ServiceIdentification, Layer { spaces?: number }
-export interface Metadata extends ServiceIdentification, Layer {}
-export interface Layer {
+type BBox = [number, number, number, number]
+
+interface Layer {
   title: string
-  url: string
-  format: Format
-  abstract?: string
-  identifier?: string
-  bbox?: BBox
-  minzoom?: number
-  maxzoom?: number
+  identifier: string
+  format: string
+  abstract: string
+  resourceURL: string
+  minzoom: string
+  maxzoom: string
+  bbox: BBox
+  tileMatrixSets: string[]
 }
-export interface ServiceIdentification {
+
+interface Service {
+  type: string
+  version: string
   title: string
-  abstract?: string
-  keywords?: string[]
-  accessConstraints?: string
-  fees?: string
 }
+
+interface URL {
+  protocol: string
+  port: string
+  host: string
+  auth: string
+  getCapabilities: string
+  getTile: string
+  query: string
+}
+
+interface Metadata {
+  layer: Layer,
+  service: Service,
+  url: URL
+}
+
 export function wmts (xml: string): Metadata
