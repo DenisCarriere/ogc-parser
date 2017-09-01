@@ -1,0 +1,34 @@
+{
+	"service": {
+		"type": "OGC WMTS",
+		"version": "1.0.0",
+		"title": "World_Imagery"
+	},
+	"layer": {
+		"title": "World_Imagery",
+		"abstract": "",
+		"identifier": "World_Imagery",
+		"format": "image/jpeg",
+		"bbox": [
+			-179.99999000000003,
+			-85.00000000000003,
+			179.99999000000003,
+			85
+		],
+		"minzoom": 0,
+		"maxzoom": 23,
+		"tileMatrixSets": [
+			"default028mm",
+			"GoogleMapsCompatible"
+		]
+	},
+	"url": {
+		"protocol": "https:",
+		"port": null,
+		"host": "services.arcgisonline.com",
+		"auth": null,
+		"getCapabilities": "https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/WMTS/1.0.0/WMTSCapabilities.xml",
+		"getTile": "https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/WMTS/tile/1.0.0/",
+		"query": null
+	}
+}
