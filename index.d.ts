@@ -31,6 +31,7 @@ interface WMS extends Service {
 interface URL {
   getCapabilities: string
   getTile: string
+  getTemplate: string
   protocol: string
   port: number
   host: string

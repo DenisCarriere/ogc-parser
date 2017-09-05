@@ -50,9 +50,10 @@ test('wmts -- ArcGIS Online', t => {
   t.deepEqual(metadata.layer.tileMatrixSets, ['default028mm', 'GoogleMapsCompatible'], 'layer.tileMatrixSets')
 
   // URL
-  t.equal(metadata.url.host, 'services.arcgisonline.com')
   t.equal(metadata.url.getTile, 'https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/WMTS/tile/1.0.0/')
   t.equal(metadata.url.getCapabilities, 'https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/WMTS/1.0.0/WMTSCapabilities.xml')
+  t.equal(metadata.url.getTemplate, 'https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/WMTS/tile/1.0.0/World_Imagery/{Style}/{TileMatrixSet}/{TileMatrix}/{TileRow}/{TileCol}.jpg')
+  t.equal(metadata.url.host, 'services.arcgisonline.com')
 
   // JSON
   if (process.env.REGEN) write.sync(testOut('wmts-arcgis.json'), metadata)
@@ -78,9 +79,10 @@ test('wmts -- Mapbox Studio', t => {
   t.deepEqual(metadata.layer.tileMatrixSets, ['GoogleMapsCompatible'], 'layer.tileMatrixSets')
 
   // URL
-  t.equal(metadata.url.host, 'api.mapbox.com')
   t.equal(metadata.url.getTile, 'https://api.mapbox.com/styles/v1/addxy/ciy23jhla008n2soz34kg2p4u/wmts?access_token=pk.eyJ1IjoiYWRkeHkiLCJhIjoiY2lsdmt5NjZwMDFsdXZka3NzaGVrZDZtdCJ9.ZUE-LebQgHaBduVwL68IoQ')
   t.equal(metadata.url.getCapabilities, 'https://api.mapbox.com/styles/v1/addxy/ciy23jhla008n2soz34kg2p4u/wmts?access_token=pk.eyJ1IjoiYWRkeHkiLCJhIjoiY2lsdmt5NjZwMDFsdXZka3NzaGVrZDZtdCJ9.ZUE-LebQgHaBduVwL68IoQ')
+  t.equal(metadata.url.getTemplate, 'https://api.mapbox.com/styles/v1/addxy/ciy23jhla008n2soz34kg2p4u/tiles/{TileMatrix}/{TileCol}/{TileRow}?access_token=pk.eyJ1IjoiYWRkeHkiLCJhIjoiY2lsdmt5NjZwMDFsdXZka3NzaGVrZDZtdCJ9.ZUE-LebQgHaBduVwL68IoQ')
+  t.equal(metadata.url.host, 'api.mapbox.com')
 
   // JSON
   if (process.env.REGEN) write.sync(testOut('wmts-mapbox.json'), metadata)

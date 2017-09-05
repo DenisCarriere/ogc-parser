@@ -15,6 +15,7 @@
 		"tileMatrixSets": []
 	},
 	"url": {
+		"getTemplate": null,
 		"getCapabilities": null,
 		"getTile": null,
 		"protocol": null,

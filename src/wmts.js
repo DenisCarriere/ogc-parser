@@ -51,12 +51,13 @@ const select = xpath.useNamespaces({
  * WMTS Metadata.Layer.URL
  *
  * @typedef {Object} URL
- * @property {string} protocol
+ * @property {string} getCapabilities
+ * @property {string} getTile
+ * @property {string} getTemplate
+ * @property {number} protocol
  * @property {string} port
  * @property {string} host
  * @property {string} auth
- * @property {string} getCapabilities
- * @property {string} getTile
  * @property {string} query
  */
 
@@ -133,11 +134,13 @@ function layer (doc) {
  * @returns {URL} url
  */
 function url (doc) {
+  const getTemplate = select('string(//ResourceURL/@template)', doc, true)
   const getTile = select('string(//ows:Operation[@name="GetTile"]//ows:Get/@xlink:href)', doc, true)
   var getCapabilities = select('string(//ows:Operation[@name="GetCapabilities"]//ows:Get/@xlink:href)', doc, true)
   if (!getCapabilities) getCapabilities = select('string(//ServiceMetadataURL/@xlink:href)', doc, true)
   const parse = URL.parse(getCapabilities)
   return {
+    getTemplate: getTemplate || null,
     getCapabilities: getCapabilities || null,
     getTile: getTile || null,
     protocol: parse.protocol,
