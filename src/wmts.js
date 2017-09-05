@@ -141,7 +141,7 @@ function url (doc) {
     getCapabilities: getCapabilities || null,
     getTile: getTile || null,
     protocol: parse.protocol,
-    port: parse.port,
+    port: (parse.port !== null) ? Number(parse.port) : null,
     host: parse.host,
     auth: parse.auth,
     query: parse.query

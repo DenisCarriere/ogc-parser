@@ -6,8 +6,8 @@ interface Layer {
   format: string
   abstract: string
   resourceURL: string
-  minzoom: string
-  maxzoom: string
+  minzoom: number
+  maxzoom: number
   bbox: BBox
   tileMatrixSets: string[]
 }
@@ -32,7 +32,7 @@ interface URL {
   getCapabilities: string
   getTile: string
   protocol: string
-  port: string
+  port: number
   host: string
   auth: string
   query: string
