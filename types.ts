@@ -1,8 +1,14 @@
 import * as ogcParser from './'
 
-const wmts = ogcParser.wmts('foo')
+// WMTS
+const capabilities = ogcParser.wmts('foo')
 
-// Attributes
-wmts.layer.abstract
-wmts.service.type
-wmts.url.getTile
+// Layer
+capabilities.layer.abstract
+
+// Service
+const type: 'OGC WMTS' = capabilities.service.type
+const version: '1.0.0' = capabilities.service.version
+
+// URL
+capabilities.url.getTile

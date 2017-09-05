@@ -13,25 +13,35 @@ interface Layer {
 }
 
 interface Service {
-  type: string
   version: string
+  type: string
   title: string
 }
 
+interface WMTS extends Service {
+  type: 'OGC WMTS'
+  version: '1.0.0'
+}
+
+interface WMS extends Service {
+  type: 'OGC WMS'
+  version: '1.3.0'
+}
+
 interface URL {
+  getCapabilities: string
+  getTile: string
   protocol: string
   port: string
   host: string
   auth: string
-  getCapabilities: string
-  getTile: string
   query: string
 }
 
-interface Metadata {
+interface Metadata<T extends Service> {
   layer: Layer,
-  service: Service,
+  service: T,
   url: URL
 }
 
-export function wmts (xml: string): Metadata
+export function wmts (xml: string): Metadata<WMTS>
