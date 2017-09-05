@@ -1,0 +1,28 @@
+<html>
+<head>
+<title>
+Error: Service World_Imagery2/MapServer not found </title>
+<link href="/arcgis/rest/static/main.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<table width="100%" class="userTable">
+<tr>
+<td class="titlecell">ArcGIS REST Framework</td>
+</tr>
+</table>
+<table width="100%" class="navTable">
+<tr valign="top">
+<td class="breadcrumbs">
+<a href="/arcgis/rest/services">Home</a>
+</td>
+</tr>
+</table>
+<div class="cbody">
+<br/>
+<br/>
+<b>Error: </b>Service World_Imagery2/MapServer not found <br/>
+<b>Code: </b>500<br/><br/>
+<div style="color:#ff6666"> </div>
+</div>
+</body>
+</html>

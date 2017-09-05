@@ -76,8 +76,8 @@ function selectZooms (node) {
     if (zoom > maxzoom || maxzoom === undefined) maxzoom = zoom
   })
   return {
-    minzoom: minzoom,
-    maxzoom: maxzoom
+    minzoom: (minzoom !== undefined) ? minzoom : null,
+    maxzoom: (maxzoom !== undefined) ? maxzoom : null
   }
 }
 
@@ -95,6 +95,7 @@ function selectBBox (node) {
     northeast = northeast.split(' ')
     return [Number(southwest[0]), Number(southwest[1]), Number(northeast[0]), Number(northeast[1])]
   }
+  return null
 }
 
 /**
@@ -111,14 +112,16 @@ function layer (doc) {
   const tileMatrixSets = select('//Layer/TileMatrixSetLink/TileMatrixSet', doc).map(tileMatrixSet => tileMatrixSet.textContent)
   const bbox = selectBBox(doc)
   const zooms = selectZooms(doc)
+  const maxzoom = zooms.maxzoom
+  const minzoom = zooms.minzoom
   return {
-    title: title,
-    abstract: abstract,
-    identifier: identifier,
-    format: format,
+    title: title || null,
+    abstract: abstract || null,
+    identifier: identifier || null,
+    format: format || null,
     bbox: bbox,
-    minzoom: zooms.minzoom,
-    maxzoom: zooms.maxzoom,
+    minzoom: minzoom,
+    maxzoom: maxzoom,
     tileMatrixSets: tileMatrixSets
   }
 }
@@ -134,14 +137,13 @@ function url (doc) {
   var getCapabilities = select('string(//ows:Operation[@name="GetCapabilities"]//ows:Get/@xlink:href)', doc, true)
   if (!getCapabilities) getCapabilities = select('string(//ServiceMetadataURL/@xlink:href)', doc, true)
   const parse = URL.parse(getCapabilities)
-
   return {
+    getCapabilities: getCapabilities || null,
+    getTile: getTile || null,
     protocol: parse.protocol,
     port: parse.port,
     host: parse.host,
     auth: parse.auth,
-    getCapabilities: getCapabilities,
-    getTile: getTile,
     query: parse.query
   }
 }
@@ -157,9 +159,9 @@ function service (doc) {
   const version = select('string(//ows:ServiceTypeVersion)', doc, true)
   const title = select('string(//ows:Title)', doc, true)
   return {
-    type: type,
-    version: version,
-    title: title
+    type: type || null,
+    version: version || null,
+    title: title || null
   }
 }
 

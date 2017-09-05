@@ -1,0 +1,33 @@
+{
+	"service": {
+		"type": "OGC WMTS",
+		"version": "1.0.0",
+		"title": "Mapbox"
+	},
+	"layer": {
+		"title": "Satellite Streets",
+		"abstract": "© OSM, © DigitalGlobe",
+		"identifier": "ciy23jhla008n2soz34kg2p4u",
+		"format": "image/jpeg",
+		"bbox": [
+			-180,
+			-85.051129,
+			179.976804,
+			85.051129
+		],
+		"minzoom": 0,
+		"maxzoom": 20,
+		"tileMatrixSets": [
+			"GoogleMapsCompatible"
+		]
+	},
+	"url": {
+		"getCapabilities": "https://api.mapbox.com/styles/v1/addxy/ciy23jhla008n2soz34kg2p4u/wmts?access_token=pk.eyJ1IjoiYWRkeHkiLCJhIjoiY2lsdmt5NjZwMDFsdXZka3NzaGVrZDZtdCJ9.ZUE-LebQgHaBduVwL68IoQ",
+		"getTile": "https://api.mapbox.com/styles/v1/addxy/ciy23jhla008n2soz34kg2p4u/wmts?access_token=pk.eyJ1IjoiYWRkeHkiLCJhIjoiY2lsdmt5NjZwMDFsdXZka3NzaGVrZDZtdCJ9.ZUE-LebQgHaBduVwL68IoQ",
+		"protocol": "https:",
+		"port": null,
+		"host": "api.mapbox.com",
+		"auth": null,
+		"query": "access_token=pk.eyJ1IjoiYWRkeHkiLCJhIjoiY2lsdmt5NjZwMDFsdXZka3NzaGVrZDZtdCJ9.ZUE-LebQgHaBduVwL68IoQ"
+	}
+}

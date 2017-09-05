@@ -1,0 +1,26 @@
+{
+	"service": {
+		"type": null,
+		"version": null,
+		"title": null
+	},
+	"layer": {
+		"title": null,
+		"abstract": null,
+		"identifier": null,
+		"format": null,
+		"bbox": null,
+		"minzoom": null,
+		"maxzoom": null,
+		"tileMatrixSets": []
+	},
+	"url": {
+		"getCapabilities": null,
+		"getTile": null,
+		"protocol": null,
+		"port": null,
+		"host": null,
+		"auth": null,
+		"query": null
+	}
+}
