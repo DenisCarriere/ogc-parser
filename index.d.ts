@@ -31,12 +31,8 @@ interface WMS extends Service {
 interface URL {
   getCapabilities: string
   getTile: string
-  getTemplate: string
-  protocol: string
-  port: number
+  resourceURL: string
   host: string
-  auth: string
-  query: string
 }
 
 interface Metadata<T extends Service> {
@@ -45,4 +41,7 @@ interface Metadata<T extends Service> {
   url: URL
 }
 
+/**
+ * Parse OGC WMTS Service
+ */
 export function wmts (xml: string): Metadata<WMTS>

@@ -1,6 +1,7 @@
 const xpath = require('xpath')
 const URL = require('url')
-const DOMParser = require('xmldom').DOMParser
+const service = require('./service')
+const createDocument = require('./utils').createDocument
 
 // Use OGC namespace
 const select = xpath.useNamespaces({
@@ -9,9 +10,15 @@ const select = xpath.useNamespaces({
 })
 
 /**
- * BBox
- *
  * @typedef {[number, number, number, number]} BBox
+ */
+
+/**
+ * @typedef {('OGC WMTS'|'OGC WMS')} ServiceType
+ */
+
+/**
+ * @typedef {('1.0.0'|'1.3.0')} ServiceVersion
  */
 
 /**
@@ -53,12 +60,8 @@ const select = xpath.useNamespaces({
  * @typedef {Object} URL
  * @property {string} getCapabilities
  * @property {string} getTile
- * @property {string} getTemplate
- * @property {number} protocol
- * @property {string} port
+ * @property {string} resourceURL
  * @property {string} host
- * @property {string} auth
- * @property {string} query
  */
 
 /**
@@ -134,49 +137,28 @@ function layer (doc) {
  * @returns {URL} url
  */
 function url (doc) {
-  const getTemplate = select('string(//ResourceURL/@template)', doc, true)
+  const resourceURL = select('string(//ResourceURL/@template)', doc, true)
   const getTile = select('string(//ows:Operation[@name="GetTile"]//ows:Get/@xlink:href)', doc, true)
   var getCapabilities = select('string(//ows:Operation[@name="GetCapabilities"]//ows:Get/@xlink:href)', doc, true)
   if (!getCapabilities) getCapabilities = select('string(//ServiceMetadataURL/@xlink:href)', doc, true)
   const parse = URL.parse(getCapabilities)
+
   return {
-    getTemplate: getTemplate || null,
+    resourceURL: resourceURL || null,
     getCapabilities: getCapabilities || null,
     getTile: getTile || null,
-    protocol: parse.protocol,
-    port: (parse.port !== null) ? Number(parse.port) : null,
-    host: parse.host,
-    auth: parse.auth,
-    query: parse.query
-  }
-}
-
-/**
- * Parse Service
- *
- * @param {Document} doc
- * @returns {Service} service
- */
-function service (doc) {
-  const type = select('string(//ows:ServiceType)', doc, true)
-  const version = select('string(//ows:ServiceTypeVersion)', doc, true)
-  const title = select('string(//ows:Title)', doc, true)
-  return {
-    type: type || null,
-    version: version || null,
-    title: title || null
+    host: parse.host
   }
 }
 
 /**
  * Parse Capabilities
  *
- * @param {string} xml
+ * @param {string|Document} xml
  * @returns {Metadata} WMTS Metadata
  */
 module.exports = function (xml) {
-  xml = xml.replace(/xmlns="[\S]+"/, '')
-  const doc = new DOMParser().parseFromString(xml)
+  const doc = createDocument(xml)
   return {
     service: service(doc),
     layer: layer(doc),

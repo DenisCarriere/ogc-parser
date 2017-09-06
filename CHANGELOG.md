@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.0 - 2017-09-06
+
+- Drop some URL.parse attributes
+- Extract service as independent method
+- 100% test coverage
+
 ## 1.1.0 - 2017-09-05
 
 - Add `url.getTemplate`

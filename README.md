@@ -31,12 +31,12 @@ $ npm install --save ogc-parser
 ```javascript
 const fs = require('fs')
 const xml = fs.readFileSync('ogc-wmts.xml', 'utf8')
-const wmts = ogcParser.wmts(xml)
-wmts.service.type
+const capabilities = ogcParser.wmts(xml)
+capabilities.service.type
 //=OGC WMTS
-wmts.service.version
+capabilities.service.version
 //=1.0.0
-wmts.url.getCapabilities
+capabilities.url.getCapabilities
 //=http://localhost:80/WMTS/1.0.0/WMTSCapabilities.xml
 ```
 
@@ -52,4 +52,37 @@ wmts.url.getCapabilities
 ...
 ```
 
-## API
+**capabilities**
+
+```json
+{
+	"service": {
+		"type": "OGC WMTS",
+		"version": "1.0.0",
+		"title": "Mapbox"
+	},
+	"layer": {
+		"title": "Satellite Streets",
+		"abstract": "© OSM, © DigitalGlobe",
+		"identifier": "ciy23jhla008n2soz34kg2p4u",
+		"format": "image/jpeg",
+		"bbox": [
+			-180,
+			-85.051129,
+			179.976804,
+			85.051129
+		],
+		"minzoom": 0,
+		"maxzoom": 20,
+		"tileMatrixSets": [
+			"GoogleMapsCompatible"
+		]
+	},
+	"url": {
+		"resourceURL": "https://api.mapbox.com/styles/v1/addxy/ciy23jhla008n2soz34kg2p4u/tiles/{TileMatrix}/{TileCol}/{TileRow}?access_token=pk.eyJ1IjoiYWRkeHkiLCJhIjoiY2lsdmt5NjZwMDFsdXZka3NzaGVrZDZtdCJ9.ZUE-LebQgHaBduVwL68IoQ",
+		"getCapabilities": "https://api.mapbox.com/styles/v1/addxy/ciy23jhla008n2soz34kg2p4u/wmts?access_token=pk.eyJ1IjoiYWRkeHkiLCJhIjoiY2lsdmt5NjZwMDFsdXZka3NzaGVrZDZtdCJ9.ZUE-LebQgHaBduVwL68IoQ",
+		"getTile": "https://api.mapbox.com/styles/v1/addxy/ciy23jhla008n2soz34kg2p4u/wmts?access_token=pk.eyJ1IjoiYWRkeHkiLCJhIjoiY2lsdmt5NjZwMDFsdXZka3NzaGVrZDZtdCJ9.ZUE-LebQgHaBduVwL68IoQ",
+		"host": "api.mapbox.com"
+	}
+}
+```

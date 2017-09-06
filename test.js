@@ -3,7 +3,8 @@ const path = require('path')
 const test = require('tape')
 const write = require('write-json-file')
 const load = require('load-json-file')
-const wmts = require('./src/wmts')
+const createDocument = require('./src/utils').createDocument
+const wmts = require('./').wmts
 
 // Utils
 const testIn = (filename) => path.join(__dirname, 'test', 'in', filename)
@@ -50,9 +51,9 @@ test('wmts -- ArcGIS Online', t => {
   t.deepEqual(metadata.layer.tileMatrixSets, ['default028mm', 'GoogleMapsCompatible'], 'layer.tileMatrixSets')
 
   // URL
+  t.equal(metadata.url.resourceURL, 'https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/WMTS/tile/1.0.0/World_Imagery/{Style}/{TileMatrixSet}/{TileMatrix}/{TileRow}/{TileCol}.jpg')
   t.equal(metadata.url.getTile, 'https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/WMTS/tile/1.0.0/')
   t.equal(metadata.url.getCapabilities, 'https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/WMTS/1.0.0/WMTSCapabilities.xml')
-  t.equal(metadata.url.getTemplate, 'https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/WMTS/tile/1.0.0/World_Imagery/{Style}/{TileMatrixSet}/{TileMatrix}/{TileRow}/{TileCol}.jpg')
   t.equal(metadata.url.host, 'services.arcgisonline.com')
 
   // JSON
@@ -79,13 +80,20 @@ test('wmts -- Mapbox Studio', t => {
   t.deepEqual(metadata.layer.tileMatrixSets, ['GoogleMapsCompatible'], 'layer.tileMatrixSets')
 
   // URL
+  t.equal(metadata.url.resourceURL, 'https://api.mapbox.com/styles/v1/addxy/ciy23jhla008n2soz34kg2p4u/tiles/{TileMatrix}/{TileCol}/{TileRow}?access_token=pk.eyJ1IjoiYWRkeHkiLCJhIjoiY2lsdmt5NjZwMDFsdXZka3NzaGVrZDZtdCJ9.ZUE-LebQgHaBduVwL68IoQ')
   t.equal(metadata.url.getTile, 'https://api.mapbox.com/styles/v1/addxy/ciy23jhla008n2soz34kg2p4u/wmts?access_token=pk.eyJ1IjoiYWRkeHkiLCJhIjoiY2lsdmt5NjZwMDFsdXZka3NzaGVrZDZtdCJ9.ZUE-LebQgHaBduVwL68IoQ')
   t.equal(metadata.url.getCapabilities, 'https://api.mapbox.com/styles/v1/addxy/ciy23jhla008n2soz34kg2p4u/wmts?access_token=pk.eyJ1IjoiYWRkeHkiLCJhIjoiY2lsdmt5NjZwMDFsdXZka3NzaGVrZDZtdCJ9.ZUE-LebQgHaBduVwL68IoQ')
-  t.equal(metadata.url.getTemplate, 'https://api.mapbox.com/styles/v1/addxy/ciy23jhla008n2soz34kg2p4u/tiles/{TileMatrix}/{TileCol}/{TileRow}?access_token=pk.eyJ1IjoiYWRkeHkiLCJhIjoiY2lsdmt5NjZwMDFsdXZka3NzaGVrZDZtdCJ9.ZUE-LebQgHaBduVwL68IoQ')
   t.equal(metadata.url.host, 'api.mapbox.com')
 
   // JSON
   if (process.env.REGEN) write.sync(testOut('wmts-mapbox.json'), metadata)
   t.deepEqual(metadata, load.sync(testOut('wmts-mapbox.json')), 'json')
+  t.end()
+})
+
+test('utils', t => {
+  const doc = createDocument(mapbox.wmts)
+  t.assert(createDocument(doc), 'add Document to createDocument')
+  t.throws(() => createDocument(123), /xml must be a string or Document/, 'xml must be a string or Document')
   t.end()
 })

@@ -15,13 +15,9 @@
 		"tileMatrixSets": []
 	},
 	"url": {
-		"getTemplate": null,
+		"resourceURL": null,
 		"getCapabilities": null,
 		"getTile": null,
-		"protocol": null,
-		"port": null,
-		"host": null,
-		"auth": null,
-		"query": null
+		"host": null
 	}
 }

@@ -23,13 +23,9 @@
 		]
 	},
 	"url": {
-		"getTemplate": "https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/WMTS/tile/1.0.0/World_Imagery/{Style}/{TileMatrixSet}/{TileMatrix}/{TileRow}/{TileCol}.jpg",
+		"resourceURL": "https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/WMTS/tile/1.0.0/World_Imagery/{Style}/{TileMatrixSet}/{TileMatrix}/{TileRow}/{TileCol}.jpg",
 		"getCapabilities": "https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/WMTS/1.0.0/WMTSCapabilities.xml",
 		"getTile": "https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/WMTS/tile/1.0.0/",
-		"protocol": "https:",
-		"port": null,
-		"host": "services.arcgisonline.com",
-		"auth": null,
-		"query": null
+		"host": "services.arcgisonline.com"
 	}
 }

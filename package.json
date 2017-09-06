@@ -1,6 +1,6 @@
 {
   "name": "ogc-parser",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Parser to convert OGC WMTS/WMS XML schemas to human friendly JSON.",
   "main": "index.js",
   "types": "index.d.ts",
