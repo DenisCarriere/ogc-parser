@@ -42,6 +42,11 @@ interface Metadata<T extends Service> {
 }
 
 /**
- * Parse OGC WMTS Service
+ * Parse OGC WMTS Service Metadata
  */
-export function wmts (xml: string): Metadata<WMTS>
+export function wmts (xml: string | Document): Metadata<WMTS>
+
+/**
+ * Parse OGC Service Information
+ */
+export function service (xml: string | Document): Service

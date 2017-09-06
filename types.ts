@@ -1,7 +1,12 @@
-import * as ogcParser from './'
+import {wmts, service} from './'
+
+// Service
+service('foo').version
+service('foo').type
+service('foo').title
 
 // WMTS
-const capabilities = ogcParser.wmts('foo')
+const capabilities = wmts('foo')
 
 // Layer
 capabilities.layer.abstract
