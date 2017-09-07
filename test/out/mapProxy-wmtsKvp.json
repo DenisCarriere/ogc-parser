@@ -15,14 +15,14 @@
 			180,
 			85.0511287798
 		],
-		"minzoom": 0,
-		"maxzoom": 19,
+		"minzoom": null,
+		"maxzoom": null,
 		"tileMatrixSets": [
 			"webmercator"
 		]
 	},
 	"url": {
-		"resourceURL": null,
+		"resourceURL": "http://localhost:8080/service?service=wmts&request=getTile&version=1.0.0&layer={Layer}&style={Style}&tilematrixset={TileMatrixSet}&tilematrix={TileMatrix}&tilerow={TileRow}&tilecol={TileCol}&format={Format}",
 		"getCapabilities": "http://localhost:8080/service?",
 		"getTile": "http://localhost:8080/service?",
 		"host": "localhost:8080"

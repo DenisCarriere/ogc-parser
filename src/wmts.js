@@ -2,6 +2,7 @@ const xpath = require('xpath')
 const URL = require('url')
 const service = require('./service')
 const createDocument = require('./utils').createDocument
+const zoomLevels = require('./zoom-levels')
 
 // Use OGC namespace
 const select = xpath.useNamespaces({
@@ -65,27 +66,6 @@ const select = xpath.useNamespaces({
  */
 
 /**
- * Select Zooms
- *
- * @param {Document} node
- * @returns {{minzoom: number, maxzoom: number}} Zooms
- */
-function selectZooms (node) {
-  const identifiers = select('//TileMatrixSet/TileMatrix/ows:Identifier', node)
-  var minzoom
-  var maxzoom
-  identifiers.forEach(identifier => {
-    const zoom = Number(identifier.textContent)
-    if (zoom < minzoom || minzoom === undefined) minzoom = zoom
-    if (zoom > maxzoom || maxzoom === undefined) maxzoom = zoom
-  })
-  return {
-    minzoom: (minzoom !== undefined) ? minzoom : null,
-    maxzoom: (maxzoom !== undefined) ? maxzoom : null
-  }
-}
-
-/**
  * Select BBox
  *
  * @param {Document} node
@@ -113,9 +93,9 @@ function layer (doc) {
   const identifier = select('string(//Layer/ows:Identifier)', doc, true)
   const abstract = select('string(//Layer/ows:Abstract)', doc, true)
   const format = select('string(//Layer/Format)', doc, true)
-  const tileMatrixSets = select('//Layer/TileMatrixSetLink/TileMatrixSet', doc).map(tileMatrixSet => tileMatrixSet.textContent)
   const bbox = selectBBox(doc)
-  const zooms = selectZooms(doc)
+  const zooms = zoomLevels(doc)
+  const tileMatrixSets = zooms.tileMatrixSets
   const maxzoom = zooms.maxzoom
   const minzoom = zooms.minzoom
   return {
@@ -137,12 +117,30 @@ function layer (doc) {
  * @returns {URL} url
  */
 function url (doc) {
-  const resourceURL = select('string(//ResourceURL/@template)', doc, true)
+  var resourceURL = select('string(//ResourceURL/@template)', doc, true)
   const getTile = select('string(//ows:Operation[@name="GetTile"]//ows:Get/@xlink:href)', doc, true)
   var getCapabilities = select('string(//ows:Operation[@name="GetCapabilities"]//ows:Get/@xlink:href)', doc, true)
   if (!getCapabilities) getCapabilities = select('string(//ServiceMetadataURL/@xlink:href)', doc, true)
   const parse = URL.parse(getCapabilities)
 
+  // Create Resource URL from KVP params
+  if (resourceURL === '' && getTile) {
+    const kvp = URL.parse(getTile)
+    kvp.search = null
+    kvp.query = {
+      service: 'wmts',
+      request: 'getTile',
+      version: '1.0.0',
+      layer: '{Layer}',
+      style: '{Style}',
+      tilematrixset: '{TileMatrixSet}',
+      tilematrix: '{TileMatrix}',
+      tilerow: '{TileRow}',
+      tilecol: '{TileCol}',
+      format: '{Format}'
+    }
+    resourceURL = URL.format(kvp).replace(/%7B/g, '{').replace(/%7D/g, '}')
+  }
   return {
     resourceURL: resourceURL || null,
     getCapabilities: getCapabilities || null,

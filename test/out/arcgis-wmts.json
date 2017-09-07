@@ -16,7 +16,7 @@
 			85
 		],
 		"minzoom": 0,
-		"maxzoom": 23,
+		"maxzoom": 18,
 		"tileMatrixSets": [
 			"default028mm",
 			"GoogleMapsCompatible"

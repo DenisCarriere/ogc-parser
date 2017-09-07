@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.3.0 - 2017-09-07
+
+- Improved tileMatrixSets handling
+- Fix ArcGIS zoom levels
+- Only support GoogleMapsCompatible
+
 ## 1.2.0 - 2017-09-06
 
 - Drop some URL.parse attributes

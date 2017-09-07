@@ -15,8 +15,8 @@
 			180,
 			85.0511287798
 		],
-		"minzoom": 0,
-		"maxzoom": 19,
+		"minzoom": null,
+		"maxzoom": null,
 		"tileMatrixSets": [
 			"webmercator"
 		]

@@ -1,32 +1,13 @@
-const fs = require('fs')
 const path = require('path')
 const test = require('tape')
 const write = require('write-json-file')
 const load = require('load-json-file')
 const createDocument = require('./src/utils').createDocument
+const xml = require('./test/xml')
 const wmts = require('./').wmts
 
 // Utils
-const testIn = (filename) => path.join(__dirname, 'test', 'in', filename)
-const testOut = (filename) => path.join(__dirname, 'test', 'out', filename)
-
-// XML Documents
-const xml = {
-  arcgis: {
-    wmts: fs.readFileSync(testIn('arcgis-wmts.xml'), 'utf8'),
-    wmtsError: fs.readFileSync(testIn('arcgis-wmts-error.xml'), 'utf8')
-  },
-  geoserver: {
-    wmts: fs.readFileSync(testIn('geoserver-wmts.xml'), 'utf8')
-  },
-  mapbox: {
-    wmts: fs.readFileSync(testIn('mapbox-wmts.xml'), 'utf8')
-  },
-  mapProxy: {
-    wmtsKvp: fs.readFileSync(testIn('mapProxy-wmtsKvp.xml'), 'utf8'),
-    wmtsRestful: fs.readFileSync(testIn('mapProxy-wmtsRestful.xml'), 'utf8')
-  }
-}
+const out = (filename) => path.join(__dirname, 'test', 'out', filename)
 
 test('ogc-parser -- providers', t => {
   for (const provider of Object.keys(xml)) {
@@ -34,8 +15,8 @@ test('ogc-parser -- providers', t => {
       if (service.match(/wmts/i)) {
         const metadata = wmts(xml[provider][service])
         const name = `${provider}-${service}.json`
-        if (process.env.REGEN) write.sync(testOut(name), metadata)
-        t.deepEqual(metadata, load.sync(testOut(name)), 'json')
+        if (process.env.REGEN) write.sync(out(name), metadata)
+        t.deepEqual(metadata, load.sync(out(name)), 'json')
       }
     }
   }
@@ -55,7 +36,7 @@ test('wmts -- ArcGIS Online', t => {
   t.equal(metadata.layer.abstract, null, 'layer.abstract')
   t.equal(metadata.layer.format, 'image/jpeg', 'layer.format')
   t.equal(metadata.layer.minzoom, 0, 'layer.minzoom')
-  t.equal(metadata.layer.maxzoom, 23, 'layer.maxzoom')
+  t.equal(metadata.layer.maxzoom, 18, 'layer.maxzoom')
   t.deepEqual(metadata.layer.bbox, [-179.99999000000003, -85.00000000000003, 179.99999000000003, 85.0], 'layer.bbox')
   t.deepEqual(metadata.layer.tileMatrixSets, ['default028mm', 'GoogleMapsCompatible'], 'layer.tileMatrixSets')
 

@@ -5,29 +5,28 @@
 		"title": "Web Map Tile Service - GeoWebCache"
 	},
 	"layer": {
-		"title": "World-Bing_Imagery",
+		"title": "sfdem",
 		"abstract": null,
-		"identifier": "mbtiles:World-Bing_Imagery",
+		"identifier": "mbtiles:sfdem",
 		"format": "image/png",
 		"bbox": [
-			-180,
-			-85,
-			180,
-			85
+			-103.87100615361028,
+			44.37021187004214,
+			-103.62932676908186,
+			44.50162561960652
 		],
-		"minzoom": null,
-		"maxzoom": null,
+		"minzoom": 0,
+		"maxzoom": 30,
 		"tileMatrixSets": [
+			"GlobalCRS84Pixel",
 			"EPSG:4326",
+			"GoogleCRS84Quad",
 			"EPSG:900913",
-			"EPSG:4326",
-			"EPSG:900913",
-			"EPSG:4326",
-			"EPSG:900913"
+			"GlobalCRS84Scale"
 		]
 	},
 	"url": {
-		"resourceURL": null,
+		"resourceURL": "http://localhost:8080/geoserver/gwc/service/wmts?service=wmts&request=getTile&version=1.0.0&layer={Layer}&style={Style}&tilematrixset={TileMatrixSet}&tilematrix={TileMatrix}&tilerow={TileRow}&tilecol={TileCol}&format={Format}",
 		"getCapabilities": "http://localhost:8080/geoserver/gwc/service/wmts?",
 		"getTile": "http://localhost:8080/geoserver/gwc/service/wmts?",
 		"host": "localhost:8080"
