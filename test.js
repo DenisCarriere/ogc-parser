@@ -11,30 +11,39 @@ const testIn = (filename) => path.join(__dirname, 'test', 'in', filename)
 const testOut = (filename) => path.join(__dirname, 'test', 'out', filename)
 
 // XML Documents
-const arcgis = {
-  wmts: fs.readFileSync(testIn('wmts-arcgis.xml'), 'utf8'),
-  error: fs.readFileSync(testIn('wmts-arcgis-error.xml'), 'utf8')
+const xml = {
+  arcgis: {
+    wmts: fs.readFileSync(testIn('arcgis-wmts.xml'), 'utf8'),
+    wmtsError: fs.readFileSync(testIn('arcgis-wmts-error.xml'), 'utf8')
+  },
+  geoserver: {
+    wmts: fs.readFileSync(testIn('geoserver-wmts.xml'), 'utf8')
+  },
+  mapbox: {
+    wmts: fs.readFileSync(testIn('mapbox-wmts.xml'), 'utf8')
+  },
+  mapProxy: {
+    wmtsKvp: fs.readFileSync(testIn('mapProxy-wmtsKvp.xml'), 'utf8'),
+    wmtsRestful: fs.readFileSync(testIn('mapProxy-wmtsRestful.xml'), 'utf8')
+  }
 }
-const mapbox = {
-  wmts: fs.readFileSync(testIn('wmts-mapbox.xml'), 'utf8')
-}
 
-test('wmts -- ArcGIS Online', t => {
-  const metadata = wmts(arcgis.error)
-
-  // Service
-  t.equal(metadata.service.type, null, 'service.type')
-  t.equal(metadata.service.version, null, 'service.version')
-  t.equal(metadata.service.title, null, 'service.title')
-
-  // JSON
-  if (process.env.REGEN) write.sync(testOut('wmts-arcgis-error.json'), metadata)
-  t.deepEqual(metadata, load.sync(testOut('wmts-arcgis-error.json')), 'json')
+test('ogc-parser -- providers', t => {
+  for (const provider of Object.keys(xml)) {
+    for (const service of Object.keys(xml[provider])) {
+      if (service.match(/wmts/i)) {
+        const metadata = wmts(xml[provider][service])
+        const name = `${provider}-${service}.json`
+        if (process.env.REGEN) write.sync(testOut(name), metadata)
+        t.deepEqual(metadata, load.sync(testOut(name)), 'json')
+      }
+    }
+  }
   t.end()
 })
 
 test('wmts -- ArcGIS Online', t => {
-  const metadata = wmts(arcgis.wmts)
+  const metadata = wmts(xml.arcgis.wmts)
   // Service
   t.equal(metadata.service.type, 'OGC WMTS', 'service.type')
   t.equal(metadata.service.version, '1.0.0', 'service.version')
@@ -55,15 +64,11 @@ test('wmts -- ArcGIS Online', t => {
   t.equal(metadata.url.getTile, 'https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/WMTS/tile/1.0.0/')
   t.equal(metadata.url.getCapabilities, 'https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/WMTS/1.0.0/WMTSCapabilities.xml')
   t.equal(metadata.url.host, 'services.arcgisonline.com')
-
-  // JSON
-  if (process.env.REGEN) write.sync(testOut('wmts-arcgis.json'), metadata)
-  t.deepEqual(metadata, load.sync(testOut('wmts-arcgis.json')), 'json')
   t.end()
 })
 
 test('wmts -- Mapbox Studio', t => {
-  const metadata = wmts(mapbox.wmts)
+  const metadata = wmts(xml.mapbox.wmts)
   // Service
   t.equal(metadata.service.type, 'OGC WMTS', 'service.type')
   t.equal(metadata.service.version, '1.0.0', 'service.version')
@@ -84,15 +89,11 @@ test('wmts -- Mapbox Studio', t => {
   t.equal(metadata.url.getTile, 'https://api.mapbox.com/styles/v1/addxy/ciy23jhla008n2soz34kg2p4u/wmts?access_token=pk.eyJ1IjoiYWRkeHkiLCJhIjoiY2lsdmt5NjZwMDFsdXZka3NzaGVrZDZtdCJ9.ZUE-LebQgHaBduVwL68IoQ')
   t.equal(metadata.url.getCapabilities, 'https://api.mapbox.com/styles/v1/addxy/ciy23jhla008n2soz34kg2p4u/wmts?access_token=pk.eyJ1IjoiYWRkeHkiLCJhIjoiY2lsdmt5NjZwMDFsdXZka3NzaGVrZDZtdCJ9.ZUE-LebQgHaBduVwL68IoQ')
   t.equal(metadata.url.host, 'api.mapbox.com')
-
-  // JSON
-  if (process.env.REGEN) write.sync(testOut('wmts-mapbox.json'), metadata)
-  t.deepEqual(metadata, load.sync(testOut('wmts-mapbox.json')), 'json')
   t.end()
 })
 
 test('utils', t => {
-  const doc = createDocument(mapbox.wmts)
+  const doc = createDocument(xml.mapbox.wmts)
   t.assert(createDocument(doc), 'add Document to createDocument')
   t.throws(() => createDocument(123), /xml must be a string or Document/, 'xml must be a string or Document')
   t.end()

@@ -1,0 +1,30 @@
+{
+	"service": {
+		"type": "OGC WMTS",
+		"version": "1.0.0",
+		"title": "MapProxy WMS Proxy"
+	},
+	"layer": {
+		"title": "Omniscale OSM WMS - osm.omniscale.net",
+		"abstract": null,
+		"identifier": "osm",
+		"format": "image/png",
+		"bbox": [
+			-180,
+			-85.0511287798,
+			180,
+			85.0511287798
+		],
+		"minzoom": 0,
+		"maxzoom": 19,
+		"tileMatrixSets": [
+			"webmercator"
+		]
+	},
+	"url": {
+		"resourceURL": null,
+		"getCapabilities": "http://localhost:8080/service?",
+		"getTile": "http://localhost:8080/service?",
+		"host": "localhost:8080"
+	}
+}

@@ -1,0 +1,35 @@
+{
+	"service": {
+		"type": "OGC WMTS",
+		"version": "1.0.0",
+		"title": "Web Map Tile Service - GeoWebCache"
+	},
+	"layer": {
+		"title": "World-Bing_Imagery",
+		"abstract": null,
+		"identifier": "mbtiles:World-Bing_Imagery",
+		"format": "image/png",
+		"bbox": [
+			-180,
+			-85,
+			180,
+			85
+		],
+		"minzoom": null,
+		"maxzoom": null,
+		"tileMatrixSets": [
+			"EPSG:4326",
+			"EPSG:900913",
+			"EPSG:4326",
+			"EPSG:900913",
+			"EPSG:4326",
+			"EPSG:900913"
+		]
+	},
+	"url": {
+		"resourceURL": null,
+		"getCapabilities": "http://localhost:8080/geoserver/gwc/service/wmts?",
+		"getTile": "http://localhost:8080/geoserver/gwc/service/wmts?",
+		"host": "localhost:8080"
+	}
+}
