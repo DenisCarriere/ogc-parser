@@ -1,0 +1,29 @@
+{
+	"service": {
+		"type": "OGC WMS",
+		"version": "1.3.0",
+		"title": "Road Network"
+	},
+	"layer": {
+		"title": "Road Network",
+		"abstract": "Road Network including Road Segment, Road Ferry, Toll Point and Blocked Passage.",
+		"identifier": "roads",
+		"format": "png",
+		"formats": [
+			"image/png",
+			"image/gif",
+			"image/jpeg",
+			"image/png; mode=8bit",
+			"image/tiff"
+		],
+		"bbox": null,
+		"minzoom": 0,
+		"maxzoom": 19
+	},
+	"url": {
+		"slippy": "http://maps.geogratis.gc.ca/wms/roads_en?service=WMS&request=GetMap&version=1.3.0&layers={Layer}&transparent=false&format={format}&height={height}&width={width}&srs={srs}&bbox={bbox}",
+		"onlineResource": "http://maps.geogratis.gc.ca/wms/roads_en?",
+		"getCapabilities": "http://maps.geogratis.gc.ca/wms/roads_en?service=WMS&request=GetCapabilities&version=1.3.0",
+		"host": "maps.geogratis.gc.ca"
+	}
+}

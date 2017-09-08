@@ -1,0 +1,403 @@
+<?xml version='1.0' encoding="ISO-8859-1" standalone="no" ?>
+<WMS_Capabilities version="1.3.0"  xmlns="http://www.opengis.net/wms"   xmlns:sld="http://www.opengis.net/sld"   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   xmlns:ms="http://mapserver.gis.umn.edu/mapserver"   xsi:schemaLocation="http://www.opengis.net/wms http://schemas.opengis.net/wms/1.3.0/capabilities_1_3_0.xsd  http://www.opengis.net/sld http://schemas.opengis.net/sld/1.1.0/sld_capabilities.xsd  http://mapserver.gis.umn.edu/mapserver http://maps.geogratis.gc.ca/wms/roads_en?service=WMS&amp;version=1.3.0&amp;request=GetSchemaExtension">
+
+<!-- MapServer version 6.4.1 OUTPUT=GIF OUTPUT=PNG OUTPUT=JPEG SUPPORTS=PROJ SUPPORTS=GD SUPPORTS=AGG SUPPORTS=FREETYPE SUPPORTS=ICONV SUPPORTS=WMS_SERVER SUPPORTS=WMS_CLIENT SUPPORTS=WFS_SERVER SUPPORTS=WFS_CLIENT SUPPORTS=WCS_SERVER SUPPORTS=GEOS INPUT=JPEG INPUT=POSTGIS INPUT=OGR INPUT=GDAL INPUT=SHAPEFILE -->
+
+<Service>
+  <Name>WMS</Name>
+  <Title>Road Network</Title>
+  <Abstract>Road Network including Road Segment, Road Ferry, Toll Point and Blocked Passage.</Abstract>
+  <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://maps.geogratis.gc.ca/wms/roads_en?"/>
+  <ContactInformation>
+    <ContactPersonPrimary>
+      <ContactPerson></ContactPerson>
+      <ContactOrganization>Government of Canada; Natural Resources Canada; Earth Sciences Sector; Canada Centre for Mapping and Earth Observation (CCMEO)</ContactOrganization>
+    </ContactPersonPrimary>
+    <ContactAddress>
+        <AddressType></AddressType>
+        <Address></Address>
+        <City></City>
+        <StateOrProvince></StateOrProvince>
+        <PostCode></PostCode>
+        <Country>Canada</Country>
+    </ContactAddress>
+      <ContactVoiceTelephone>1 (819) 564-5600 / 1 (800) 661-2638</ContactVoiceTelephone>
+      <ContactFacsimileTelephone></ContactFacsimileTelephone>
+  <ContactElectronicMailAddress>NRCan.geogratis-geogratis.RNCan@canada.ca</ContactElectronicMailAddress>
+  </ContactInformation>
+  <Fees>http://open.canada.ca/en/open-government-licence-canada</Fees>
+  <MaxWidth>4096</MaxWidth>
+  <MaxHeight>4096</MaxHeight>
+</Service>
+
+<Capability>
+  <Request>
+    <GetCapabilities>
+      <Format>text/xml</Format>
+      <DCPType>
+        <HTTP>
+          <Get><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://maps.geogratis.gc.ca/wms/roads_en?"/></Get>
+          <Post><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://maps.geogratis.gc.ca/wms/roads_en?"/></Post>
+        </HTTP>
+      </DCPType>
+    </GetCapabilities>
+    <GetMap>
+      <Format>image/png</Format>
+      <Format>image/gif</Format>
+      <Format>image/jpeg</Format>
+      <Format>image/png; mode=8bit</Format>
+      <Format>image/tiff</Format>
+      <DCPType>
+        <HTTP>
+          <Get><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://maps.geogratis.gc.ca/wms/roads_en?"/></Get>
+          <Post><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://maps.geogratis.gc.ca/wms/roads_en?"/></Post>
+        </HTTP>
+      </DCPType>
+    </GetMap>
+    <GetFeatureInfo>
+      <Format>text/html</Format>
+      <Format>application/vnd.ogc.gml</Format>
+      <Format>text/plain</Format>
+      <DCPType>
+        <HTTP>
+          <Get><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://maps.geogratis.gc.ca/wms/roads_en?"/></Get>
+          <Post><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://maps.geogratis.gc.ca/wms/roads_en?"/></Post>
+        </HTTP>
+      </DCPType>
+    </GetFeatureInfo>
+    <sld:GetLegendGraphic>
+      <Format>image/png</Format>
+      <Format>image/gif</Format>
+      <Format>image/jpeg</Format>
+      <Format>image/png; mode=8bit</Format>
+      <DCPType>
+        <HTTP>
+          <Get><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://maps.geogratis.gc.ca/wms/roads_en?"/></Get>
+          <Post><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://maps.geogratis.gc.ca/wms/roads_en?"/></Post>
+        </HTTP>
+      </DCPType>
+    </sld:GetLegendGraphic>
+  </Request>
+  <Exception>
+    <Format>XML</Format>
+    <Format>INIMAGE</Format>
+    <Format>BLANK</Format>
+  </Exception>
+  <sld:UserDefinedSymbolization SupportSLD="1" UserLayer="0" UserStyle="1" RemoteWFS="0" InlineFeature="0" RemoteWCS="0"/>
+  <Layer>
+    <Name>roads</Name>
+    <Title>Road Network</Title>
+    <Abstract>Road Network including Road Segment, Road Ferry, Toll Point and Blocked Passage.</Abstract>
+    <CRS>EPSG:2019</CRS>
+    <CRS>EPSG:2294</CRS>
+    <CRS>EPSG:2295</CRS>
+    <CRS>EPSG:2952</CRS>
+    <CRS>EPSG:3395</CRS>
+    <CRS>EPSG:3400</CRS>
+    <CRS>EPSG:3401</CRS>
+    <CRS>EPSG:3571</CRS>
+    <CRS>EPSG:3572</CRS>
+    <CRS>EPSG:3573</CRS>
+    <CRS>EPSG:3574</CRS>
+    <CRS>EPSG:3575</CRS>
+    <CRS>EPSG:3576</CRS>
+    <CRS>EPSG:3578</CRS>
+    <CRS>EPSG:3579</CRS>
+    <CRS>EPSG:3799</CRS>
+    <CRS>EPSG:3857</CRS>
+    <CRS>EPSG:3978</CRS>
+    <CRS>EPSG:3979</CRS>
+    <CRS>EPSG:4269</CRS>
+    <CRS>EPSG:4326</CRS>
+    <CRS>EPSG:4617</CRS>
+    <CRS>EPSG:26707</CRS>
+    <CRS>EPSG:26708</CRS>
+    <CRS>EPSG:26709</CRS>
+    <CRS>EPSG:26710</CRS>
+    <CRS>EPSG:26711</CRS>
+    <CRS>EPSG:26712</CRS>
+    <CRS>EPSG:26713</CRS>
+    <CRS>EPSG:26714</CRS>
+    <CRS>EPSG:26715</CRS>
+    <CRS>EPSG:26716</CRS>
+    <CRS>EPSG:26717</CRS>
+    <CRS>EPSG:26718</CRS>
+    <CRS>EPSG:26719</CRS>
+    <CRS>EPSG:26720</CRS>
+    <CRS>EPSG:26721</CRS>
+    <CRS>EPSG:26722</CRS>
+    <CRS>EPSG:26907</CRS>
+    <CRS>EPSG:26908</CRS>
+    <CRS>EPSG:26909</CRS>
+    <CRS>EPSG:26910</CRS>
+    <CRS>EPSG:26911</CRS>
+    <CRS>EPSG:26912</CRS>
+    <CRS>EPSG:26913</CRS>
+    <CRS>EPSG:26914</CRS>
+    <CRS>EPSG:26915</CRS>
+    <CRS>EPSG:26916</CRS>
+    <CRS>EPSG:26917</CRS>
+    <CRS>EPSG:26918</CRS>
+    <CRS>EPSG:26919</CRS>
+    <CRS>EPSG:26920</CRS>
+    <CRS>EPSG:26921</CRS>
+    <CRS>EPSG:26922</CRS>
+    <CRS>EPSG:32181</CRS>
+    <CRS>EPSG:32182</CRS>
+    <CRS>EPSG:32183</CRS>
+    <CRS>EPSG:32184</CRS>
+    <CRS>EPSG:32185</CRS>
+    <CRS>EPSG:32186</CRS>
+    <CRS>EPSG:32187</CRS>
+    <CRS>EPSG:32188</CRS>
+    <CRS>EPSG:32189</CRS>
+    <CRS>EPSG:32190</CRS>
+    <CRS>EPSG:32191</CRS>
+    <CRS>EPSG:32192</CRS>
+    <CRS>EPSG:32193</CRS>
+    <CRS>EPSG:32194</CRS>
+    <CRS>EPSG:32195</CRS>
+    <CRS>EPSG:32196</CRS>
+    <CRS>EPSG:32197</CRS>
+    <CRS>EPSG:32198</CRS>
+    <CRS>EPSG:41001</CRS>
+    <CRS>EPSG:42101</CRS>
+    <CRS>EPSG:42304</CRS>
+    <CRS>EPSG:53016</CRS>
+    <CRS>EPSG:54003</CRS>
+    <CRS>EPSG:54004</CRS>
+    <CRS>EPSG:54008</CRS>
+    <CRS>EPSG:54009</CRS>
+    <CRS>EPSG:54016</CRS>
+    <CRS>EPSG:54030</CRS>
+    <CRS>EPSG:102002</CRS>
+    <CRS>EPSG:102008</CRS>
+    <CRS>EPSG:102009</CRS>
+    <CRS>EPSG:102016</CRS>
+    <CRS>EPSG:102017</CRS>
+    <CRS>EPSG:102018</CRS>
+    <CRS>EPSG:102100</CRS>
+    <CRS>EPSG:102184</CRS>
+    <CRS>EPSG:102185</CRS>
+    <CRS>EPSG:104306</CRS>
+    <CRS>EPSG:900913</CRS>
+    <EX_GeographicBoundingBox>
+        <westBoundLongitude>-180</westBoundLongitude>
+        <eastBoundLongitude>180</eastBoundLongitude>
+        <southBoundLatitude>-90</southBoundLatitude>
+        <northBoundLatitude>90</northBoundLatitude>
+    </EX_GeographicBoundingBox>
+    <BoundingBox CRS="EPSG:4269"
+                minx="-90" miny="-180" maxx="90" maxy="180" />
+    <Layer>
+      <Name>roads</Name>
+      <Title>Road Network</Title>
+      <Abstract>Legend</Abstract>
+    <Style>
+       <Name>default</Name>
+       <Title>default</Title>
+       <LegendURL width="39" height="5">
+          <Format>image/png</Format>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://maps.geogratis.gc.ca/wms/roads_en?version=1.3.0&amp;service=WMS&amp;request=GetLegendGraphic&amp;sld_version=1.1.0&amp;layer=roads&amp;format=image/png&amp;STYLE=default"/>
+       </LegendURL>
+    </Style>
+      <Layer queryable="0" opaque="0" cascaded="0">
+        <Name>roads.legend</Name>
+        <Title>Legend</Title>
+        <Abstract>Legend</Abstract>
+        <CRS>EPSG:4269</CRS>
+        <!-- WARNING: Optional Ex_GeographicBoundingBox could not be established for this layer.  Consider setting the EXTENT in the LAYER object, or wms_extent metadata. Also check that your data exists in the DATA statement -->
+      </Layer>
+    </Layer>
+    <Layer>
+      <Name>roads.road_segment</Name>
+      <Title>Road Segment</Title>
+      <Abstract>Representation of continuous centerline of roads of unrestricted usage and sharing similar characteristics in Canada.</Abstract>
+    <Style>
+       <Name>default</Name>
+       <Title>default</Title>
+       <LegendURL width="177" height="236">
+          <Format>image/png</Format>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://maps.geogratis.gc.ca/wms/roads_en?version=1.3.0&amp;service=WMS&amp;request=GetLegendGraphic&amp;sld_version=1.1.0&amp;layer=roads.road_segment&amp;format=image/png&amp;STYLE=default"/>
+       </LegendURL>
+    </Style>
+      <Layer queryable="1" opaque="0" cascaded="0">
+        <Name>roads.road_segment.50000</Name>
+        <Title>Road Segment - Alleyway</Title>
+        <Abstract>A low-speed thoroughfare dedicated to provide access to the rear of properties.</Abstract>
+        <CRS>EPSG:4269</CRS>
+        <!-- WARNING: Optional Ex_GeographicBoundingBox could not be established for this layer.  Consider setting the EXTENT in the LAYER object, or wms_extent metadata. Also check that your data exists in the DATA statement -->
+        <Style>
+          <Name>default</Name>
+          <Title>default</Title>
+          <LegendURL width="87" height="26">
+             <Format>image/png</Format>
+             <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://maps.geogratis.gc.ca/wms/roads_en?version=1.3.0&amp;service=WMS&amp;request=GetLegendGraphic&amp;sld_version=1.1.0&amp;layer=roads.road_segment.50000&amp;format=image/png&amp;STYLE=default"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>50000</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="1" opaque="0" cascaded="0">
+        <Name>roads.road_segment.125000</Name>
+        <Title>Service Lane &amp; Rapid Transit</Title>
+        <Abstract>Service Lane: A stretch of road permitting vehicles to come to a stop along a freeway or highway. Scale, service lane, emergency lane, lookout and rest area. Rapid Transit: Thoroughfare restricted to public transit buses.</Abstract>
+        <CRS>EPSG:4269</CRS>
+        <!-- WARNING: Optional Ex_GeographicBoundingBox could not be established for this layer.  Consider setting the EXTENT in the LAYER object, or wms_extent metadata. Also check that your data exists in the DATA statement -->
+        <Style>
+          <Name>default</Name>
+          <Title>default</Title>
+          <LegendURL width="111" height="68">
+             <Format>image/png</Format>
+             <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://maps.geogratis.gc.ca/wms/roads_en?version=1.3.0&amp;service=WMS&amp;request=GetLegendGraphic&amp;sld_version=1.1.0&amp;layer=roads.road_segment.125000&amp;format=image/png&amp;STYLE=default"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>125000</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="1" opaque="0" cascaded="0">
+        <Name>roads.road_segment.250000</Name>
+        <Title>Resource and Recreation</Title>
+        <Abstract>A narrow passage whose primary function is to provide access for resource extraction and may also have serve in providing public access to the backcountry.</Abstract>
+        <CRS>EPSG:4269</CRS>
+        <!-- WARNING: Optional Ex_GeographicBoundingBox could not be established for this layer.  Consider setting the EXTENT in the LAYER object, or wms_extent metadata. Also check that your data exists in the DATA statement -->
+        <Style>
+          <Name>default</Name>
+          <Title>default</Title>
+          <LegendURL width="177" height="47">
+             <Format>image/png</Format>
+             <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://maps.geogratis.gc.ca/wms/roads_en?version=1.3.0&amp;service=WMS&amp;request=GetLegendGraphic&amp;sld_version=1.1.0&amp;layer=roads.road_segment.250000&amp;format=image/png&amp;STYLE=default"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>250000</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="1" opaque="0" cascaded="0">
+        <Name>roads.road_segment.500000</Name>
+        <Title>Expressway/Highway &amp; Freeway &amp; Winter &amp; Arterial &amp; Collector &amp; Ramp</Title>
+        <Abstract>Thoroughfare with medium to large traffic capacity.</Abstract>
+        <CRS>EPSG:4269</CRS>
+        <!-- WARNING: Optional Ex_GeographicBoundingBox could not be established for this layer.  Consider setting the EXTENT in the LAYER object, or wms_extent metadata. Also check that your data exists in the DATA statement -->
+        <Style>
+          <Name>default</Name>
+          <Title>default</Title>
+          <LegendURL width="156" height="110">
+             <Format>image/png</Format>
+             <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://maps.geogratis.gc.ca/wms/roads_en?version=1.3.0&amp;service=WMS&amp;request=GetLegendGraphic&amp;sld_version=1.1.0&amp;layer=roads.road_segment.500000&amp;format=image/png&amp;STYLE=default"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>500000</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="1" opaque="0" cascaded="0">
+        <Name>roads.road_segment.large</Name>
+        <Title>Road Network (1 million).</Title>
+        <Abstract>Road Network (1 million).</Abstract>
+        <CRS>EPSG:4269</CRS>
+        <!-- WARNING: Optional Ex_GeographicBoundingBox could not be established for this layer.  Consider setting the EXTENT in the LAYER object, or wms_extent metadata. Also check that your data exists in the DATA statement -->
+        <MinScaleDenominator>500000</MinScaleDenominator>
+        <MaxScaleDenominator>2e+06</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="1" opaque="0" cascaded="0">
+        <Name>roads.road_segment.mid</Name>
+        <Title>Road network (7.5 Million)</Title>
+        <Abstract>Road network (7.5 Million).</Abstract>
+        <CRS>EPSG:4269</CRS>
+        <!-- WARNING: Optional Ex_GeographicBoundingBox could not be established for this layer.  Consider setting the EXTENT in the LAYER object, or wms_extent metadata. Also check that your data exists in the DATA statement -->
+        <MinScaleDenominator>2e+06</MinScaleDenominator>
+        <MaxScaleDenominator>8e+06</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="1" opaque="0" cascaded="0">
+        <Name>roads.road_segment.small</Name>
+        <Title>Road network (30 Million).</Title>
+        <Abstract>Road network (30 Million).</Abstract>
+        <CRS>EPSG:4269</CRS>
+        <!-- WARNING: Optional Ex_GeographicBoundingBox could not be established for this layer.  Consider setting the EXTENT in the LAYER object, or wms_extent metadata. Also check that your data exists in the DATA statement -->
+        <MinScaleDenominator>8e+06</MinScaleDenominator>
+        <MaxScaleDenominator>3e+07</MaxScaleDenominator>
+      </Layer>
+    </Layer>
+    <Layer queryable="1" opaque="0" cascaded="0">
+        <Name>roads.ferry</Name>
+        <Title>Road Ferry</Title>
+        <Abstract>The average route a ferryboat takes when transporting vehicles between two fixed locations on the road network.</Abstract>
+        <CRS>EPSG:4269</CRS>
+        <!-- WARNING: Optional Ex_GeographicBoundingBox could not be established for this layer.  Consider setting the EXTENT in the LAYER object, or wms_extent metadata. Also check that your data exists in the DATA statement -->
+        <Style>
+          <Name>default</Name>
+          <Title>default</Title>
+          <LegendURL width="100" height="26">
+             <Format>image/png</Format>
+             <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://maps.geogratis.gc.ca/wms/roads_en?version=1.3.0&amp;service=WMS&amp;request=GetLegendGraphic&amp;sld_version=1.1.0&amp;layer=roads.ferry&amp;format=image/png&amp;STYLE=default"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>2e+06</MaxScaleDenominator>
+    </Layer>
+    <Layer queryable="1" opaque="0" cascaded="0">
+        <Name>road.tollpoint</Name>
+        <Title>Toll point</Title>
+        <Abstract>Place where a right-of-way is charged to gain access to a motorway, a bridge, etc.</Abstract>
+        <CRS>EPSG:4269</CRS>
+        <!-- WARNING: Optional Ex_GeographicBoundingBox could not be established for this layer.  Consider setting the EXTENT in the LAYER object, or wms_extent metadata. Also check that your data exists in the DATA statement -->
+        <Style>
+          <Name>default</Name>
+          <Title>default</Title>
+          <LegendURL width="139" height="47">
+             <Format>image/png</Format>
+             <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://maps.geogratis.gc.ca/wms/roads_en?version=1.3.0&amp;service=WMS&amp;request=GetLegendGraphic&amp;sld_version=1.1.0&amp;layer=road.tollpoint&amp;format=image/png&amp;STYLE=default"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>50000</MaxScaleDenominator>
+    </Layer>
+    <Layer queryable="1" opaque="0" cascaded="0">
+        <Name>road.blocked_passage</Name>
+        <Title>Blocked Passage</Title>
+        <Abstract>Indication of a physical barrier on a Road Element built to prevent or control further access.</Abstract>
+        <CRS>EPSG:4269</CRS>
+        <!-- WARNING: Optional Ex_GeographicBoundingBox could not be established for this layer.  Consider setting the EXTENT in the LAYER object, or wms_extent metadata. Also check that your data exists in the DATA statement -->
+        <Style>
+          <Name>default</Name>
+          <Title>default</Title>
+          <LegendURL width="244" height="47">
+             <Format>image/png</Format>
+             <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://maps.geogratis.gc.ca/wms/roads_en?version=1.3.0&amp;service=WMS&amp;request=GetLegendGraphic&amp;sld_version=1.1.0&amp;layer=road.blocked_passage&amp;format=image/png&amp;STYLE=default"/>
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>30000</MaxScaleDenominator>
+    </Layer>
+    <Layer>
+      <Name>roads.road_segment.label</Name>
+      <Title>Road Segment Label</Title>
+      <Abstract>Labels including Street names, Route names and Route number.</Abstract>
+    <Style>
+       <Name>default</Name>
+       <Title>default</Title>
+       <LegendURL width="39" height="5">
+          <Format>image/png</Format>
+          <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://maps.geogratis.gc.ca/wms/roads_en?version=1.3.0&amp;service=WMS&amp;request=GetLegendGraphic&amp;sld_version=1.1.0&amp;layer=roads.road_segment.label&amp;format=image/png&amp;STYLE=default"/>
+       </LegendURL>
+    </Style>
+      <Layer queryable="1" opaque="0" cascaded="0">
+        <Name>roads.road_segment.streetname</Name>
+        <Title>Street name</Title>
+        <Abstract>Name of a street segment in the road network as assigned by a local authority.</Abstract>
+        <CRS>EPSG:4269</CRS>
+        <!-- WARNING: Optional Ex_GeographicBoundingBox could not be established for this layer.  Consider setting the EXTENT in the LAYER object, or wms_extent metadata. Also check that your data exists in the DATA statement -->
+        <MaxScaleDenominator>30000</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="1" opaque="0" cascaded="0">
+        <Name>roads.road_segment.routename</Name>
+        <Title>Route name</Title>
+        <Abstract>Name of a route in the road network as assigned by a national or subnational agency</Abstract>
+        <CRS>EPSG:4269</CRS>
+        <!-- WARNING: Optional Ex_GeographicBoundingBox could not be established for this layer.  Consider setting the EXTENT in the LAYER object, or wms_extent metadata. Also check that your data exists in the DATA statement -->
+        <MaxScaleDenominator>100000</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="1" opaque="0" cascaded="0">
+        <Name>roads.road_segment.route_number</Name>
+        <Title>Route number</Title>
+        <Abstract>Number of a particular route in the road network as assigned by a national or subnational agency.</Abstract>
+        <CRS>EPSG:4269</CRS>
+        <!-- WARNING: Optional Ex_GeographicBoundingBox could not be established for this layer.  Consider setting the EXTENT in the LAYER object, or wms_extent metadata. Also check that your data exists in the DATA statement -->
+        <MaxScaleDenominator>300000</MaxScaleDenominator>
+      </Layer>
+    </Layer>
+  </Layer>
+</Capability>
+</WMS_Capabilities>
