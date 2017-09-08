@@ -1,4 +1,4 @@
-import {wmts, service} from './'
+import { wmts, service } from './'
 
 // Service
 service('foo').version

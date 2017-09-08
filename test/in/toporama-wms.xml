@@ -1,0 +1,301 @@
+<?xml version='1.0' encoding="ISO-8859-1" standalone="no" ?>
+<!DOCTYPE WMT_MS_Capabilities SYSTEM "http://schemas.opengis.net/wms/1.1.1/WMS_MS_Capabilities.dtd"
+ [
+ <!ELEMENT VendorSpecificCapabilities EMPTY>
+ ]>
+<WMT_MS_Capabilities version="1.1.1">
+<Service>
+  <Name>OGC:WMS</Name>
+  <Title>WMS-Toporama</Title>
+  <Abstract>The Toporama Web Map Service (Toporama WMS) of the Earth Sciences Sector (ESS) at Natural Resources Canada (NRCan) is an Internet service that is intended mainly for online map application users and developers. This service is compatible with OpenGIS® Consortium (OGC) (http://www.opengeospatial.org/) Web Map Service standards and specifications, version 1.1.1. Toporama WMS can be accessed at no cost and without restrictions according to the terms of the Open Government Licence - Canada (http://open.canada.ca/en/open-government-licence-canada). This service can be used to build a customized map using the best baseline data from the ESS for a given scale. These data are known for being accurate and up-to-date. They are grouped together under 15 information themes developed, depending on the scale, using CanVec 1:50,000, the National Topographic Data Base (NTDB) 1:250,000 and baseline data from the Atlas of Canada.
+  </Abstract>
+        <KeywordList>
+          <Keyword>Toporama</Keyword>
+          <Keyword>WMS-Toporama</Keyword>
+          <Keyword>Topography</Keyword>
+          <Keyword>Built-up areas</Keyword>
+          <Keyword>Populated places</Keyword>
+          <Keyword>Designated areas</Keyword>
+          <Keyword>Constructions</Keyword>
+          <Keyword>Contours</Keyword>
+          <Keyword>Hypsography</Keyword>
+          <Keyword>Water features</Keyword>
+          <Keyword>Hydrography</Keyword>
+          <Keyword>Landforms</Keyword>
+          <Keyword>Power network</Keyword>
+          <Keyword>Railway</Keyword>
+          <Keyword>Road network</Keyword>
+          <Keyword>Structures</Keyword>
+          <Keyword>Water saturated soils</Keyword>
+          <Keyword>Feature names</Keyword>
+          <Keyword>Vegetation</Keyword>
+          <Keyword>Limits</Keyword>
+        </KeywordList>
+  <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://maps.geogratis.gc.ca/wms/toporama_en?"/>
+  <ContactInformation>
+    <ContactPersonPrimary>
+      <ContactPerson>GeoGratis Client Services</ContactPerson>
+      <ContactOrganization>Government of canada, Natural Resources Canada, Earth Sciences Sector</ContactOrganization>
+    </ContactPersonPrimary>
+    <ContactAddress>
+        <AddressType></AddressType>
+        <Address></Address>
+        <City></City>
+        <StateOrProvince></StateOrProvince>
+        <PostCode></PostCode>
+        <Country></Country>
+    </ContactAddress>
+      <ContactVoiceTelephone>+01-819-564-5600 / 1-800-661-2638 (Canada and United States)</ContactVoiceTelephone>
+      <ContactFacsimileTelephone>+01-819-564-5698</ContactFacsimileTelephone>
+  <ContactElectronicMailAddress>geoginfo@nrcan.gc.ca</ContactElectronicMailAddress>
+  </ContactInformation>
+  <Fees>Free for download</Fees>
+  <AccessConstraints>Open Government Licence - Canada (http://open.canada.ca/en/open-government-licence-canada)</AccessConstraints>
+</Service>
+<Capability>
+  <Request>
+    <GetCapabilities>
+      <Format>application/vnd.ogc.wms_xml</Format>
+      <DCPType>
+        <HTTP>
+          <Get><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://maps.geogratis.gc.ca/wms/toporama_en?"/></Get>
+        </HTTP>
+      </DCPType>
+    </GetCapabilities>
+    <GetMap>
+      <Format>image/jpeg</Format>
+      <Format>image/png; mode=24bit</Format>
+      <Format>image/gif</Format>
+      <Format>image/wbmp</Format>
+      <DCPType>
+        <HTTP>
+          <Get><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://maps.geogratis.gc.ca/wms/toporama_en?"/></Get>
+        </HTTP>
+      </DCPType>
+    </GetMap>
+    <GetFeatureInfo>
+      <Format>text/plain</Format>
+      <Format>application/vnd.ogc.gml</Format>
+      <DCPType>
+        <HTTP>
+          <Get><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://maps.geogratis.gc.ca/wms/toporama_en?"/></Get>
+        </HTTP>
+      </DCPType>
+    </GetFeatureInfo>
+    <DescribeLayer>
+      <Format>text/xml</Format>
+      <DCPType>
+        <HTTP>
+          <Get><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://maps.geogratis.gc.ca/wms/toporama_en?"/></Get>
+        </HTTP>
+      </DCPType>
+    </DescribeLayer>
+    <GetLegendGraphic>
+      <Format>image/gif</Format>
+      <DCPType>
+        <HTTP>
+          <Get><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://maps.geogratis.gc.ca/wms/toporama_en?"/></Get>
+        </HTTP>
+      </DCPType>
+    </GetLegendGraphic>
+    <GetStyles>
+      <Format>text/xml</Format>
+      <DCPType>
+        <HTTP>
+          <Get><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://maps.geogratis.gc.ca/wms/toporama_en?"/></Get>
+        </HTTP>
+      </DCPType>
+    </GetStyles>
+  </Request>
+  <Exception>
+    <Format>application/vnd.ogc.se_xml</Format>
+    <Format>application/vnd.ogc.se_inimage</Format>
+    <Format>application/vnd.ogc.se_blank</Format>
+  </Exception>
+  <VendorSpecificCapabilities />
+  <UserDefinedSymbolization SupportSLD="1" UserLayer="0" UserStyle="1" RemoteWFS="0"/>
+  <Layer>
+    <Name>WMS-Toporama</Name>
+    <Title>WMS-Toporama</Title>
+    <SRS>EPSG:3978</SRS>
+    <SRS>EPSG:2294</SRS>
+    <SRS>EPSG:2295</SRS>
+    <SRS>EPSG:3395</SRS>
+    <SRS>EPSG:3400</SRS>
+    <SRS>EPSG:3401</SRS>
+    <SRS>EPSG:3857</SRS>
+    <SRS>EPSG:4269</SRS>
+    <SRS>EPSG:4326</SRS>
+    <SRS>EPSG:26707</SRS>
+    <SRS>EPSG:26708</SRS>
+    <SRS>EPSG:26709</SRS>
+    <SRS>EPSG:26710</SRS>
+    <SRS>EPSG:26711</SRS>
+    <SRS>EPSG:26712</SRS>
+    <SRS>EPSG:26713</SRS>
+    <SRS>EPSG:26714</SRS>
+    <SRS>EPSG:26715</SRS>
+    <SRS>EPSG:26716</SRS>
+    <SRS>EPSG:26717</SRS>
+    <SRS>EPSG:26718</SRS>
+    <SRS>EPSG:26719</SRS>
+    <SRS>EPSG:26720</SRS>
+    <SRS>EPSG:26721</SRS>
+    <SRS>EPSG:26722</SRS>
+    <SRS>EPSG:26907</SRS>
+    <SRS>EPSG:26908</SRS>
+    <SRS>EPSG:26909</SRS>
+    <SRS>EPSG:26910</SRS>
+    <SRS>EPSG:26911</SRS>
+    <SRS>EPSG:26912</SRS>
+    <SRS>EPSG:26913</SRS>
+    <SRS>EPSG:26914</SRS>
+    <SRS>EPSG:26915</SRS>
+    <SRS>EPSG:26916</SRS>
+    <SRS>EPSG:26917</SRS>
+    <SRS>EPSG:26918</SRS>
+    <SRS>EPSG:26919</SRS>
+    <SRS>EPSG:26920</SRS>
+    <SRS>EPSG:26921</SRS>
+    <SRS>EPSG:26922</SRS>
+    <SRS>EPSG:32181</SRS>
+    <SRS>EPSG:32182</SRS>
+    <SRS>EPSG:32183</SRS>
+    <SRS>EPSG:32184</SRS>
+    <SRS>EPSG:32185</SRS>
+    <SRS>EPSG:32186</SRS>
+    <SRS>EPSG:32187</SRS>
+    <SRS>EPSG:32188</SRS>
+    <SRS>EPSG:32189</SRS>
+    <SRS>EPSG:32190</SRS>
+    <SRS>EPSG:32191</SRS>
+    <SRS>EPSG:32192</SRS>
+    <SRS>EPSG:32193</SRS>
+    <SRS>EPSG:32194</SRS>
+    <SRS>EPSG:32195</SRS>
+    <SRS>EPSG:32196</SRS>
+    <SRS>EPSG:32197</SRS>
+    <SRS>EPSG:32198</SRS>
+    <SRS>EPSG:41001</SRS>
+    <SRS>EPSG:42101</SRS>
+    <SRS>EPSG:42304</SRS>
+    <SRS>EPSG:53016</SRS>
+    <SRS>EPSG:54003</SRS>
+    <SRS>EPSG:54004</SRS>
+    <SRS>EPSG:54008</SRS>
+    <SRS>EPSG:54009</SRS>
+    <SRS>EPSG:54016</SRS>
+    <SRS>EPSG:54030</SRS>
+    <SRS>EPSG:102008</SRS>
+    <SRS>EPSG:102009</SRS>
+    <SRS>EPSG:102016</SRS>
+    <SRS>EPSG:102017</SRS>
+    <SRS>EPSG:102018</SRS>
+    <SRS>EPSG:102100</SRS>
+    <SRS>EPSG:102184</SRS>
+    <SRS>EPSG:102185</SRS>
+    <SRS>EPSG:900913</SRS>
+    <LatLonBoundingBox minx="-141" miny="41" maxx="-52" maxy="84" />
+    <BoundingBox SRS="EPSG:3978" minx="-2750565" miny="-936639" maxx="3583873" maxy="4654175" />
+    <Layer>
+    <Title>Toporama</Title>
+    <Layer queryable="0" opaque="0" cascaded="0">
+        <Name>limits</Name>
+        <Title>Limits</Title>
+        <Abstract>The Limits layer represents Geopolitical Boundaries features such as the international boundary, the inter-provincial/territorial boundaries and the exclusive economic zones of Canada along with political divisions.</Abstract>
+        <SRS>EPSG:4269</SRS>
+    </Layer>
+    <Layer queryable="0" opaque="0" cascaded="0">
+        <Name>vegetation</Name>
+        <Title>Vegetation</Title>
+        <Abstract>The Vegetation layer represents wooded areas covered by bushes and/or trees.</Abstract>
+        <SRS>EPSG:4269</SRS>
+    </Layer>
+    <Layer queryable="0" opaque="0" cascaded="0">
+        <Name>builtup_areas</Name>
+        <Title>Built-up areas</Title>
+        <Abstract>The Built-up areas layer represents densely populated zones where buildings are so close together that, for cartographic purposes, they are represented by a built-up area outline.</Abstract>
+        <SRS>EPSG:4269</SRS>
+    </Layer>
+    <Layer queryable="0" opaque="0" cascaded="0">
+        <Name>designated_areas</Name>
+        <Title>Designated areas</Title>
+        <Abstract>The Designated areas layer represents areas of the landmass that have a precise use or function (examples: campground, marina, cemetery, golf course, etc.).</Abstract>
+        <SRS>EPSG:4269</SRS>
+    </Layer>
+    <Layer queryable="0" opaque="0" cascaded="0">
+        <Name>hydrography</Name>
+        <Title>Hydrography</Title>
+        <Abstract>The Hydrography layer represents the surface water network only.</Abstract>
+        <SRS>EPSG:4269</SRS>
+    </Layer>
+    <Layer queryable="0" opaque="0" cascaded="0">
+        <Name>hypsography</Name>
+        <Title>Hypsography</Title>
+        <Abstract>The Hypsography layer represents elevation points and continuous lines formed by peaks of equal altitude used to describe the topography. Elevation of points and lines is always calculated from mean sea level.</Abstract>
+        <SRS>EPSG:4269</SRS>
+    </Layer>
+    <Layer queryable="0" opaque="0" cascaded="0">
+        <Name>water_saturated_soils</Name>
+        <Title>Water saturated soils</Title>
+        <Abstract>The Water saturated soils layer represents the major categories of wetlands.</Abstract>
+        <SRS>EPSG:4269</SRS>
+    </Layer>
+    <Layer queryable="0" opaque="0" cascaded="0">
+        <Name>landforms</Name>
+        <Title>Landforms</Title>
+        <Abstract>The Landforms layer represents certain natural geographic features resulting from glacier and permafrost activity.</Abstract>
+        <SRS>EPSG:4269</SRS>
+    </Layer>
+    <Layer queryable="0" opaque="0" cascaded="0">
+        <Name>constructions</Name>
+        <Title>Constructions</Title>
+        <Abstract>The Constructions layer represents manmade structures and buildings.</Abstract>
+        <SRS>EPSG:4269</SRS>
+    </Layer>
+    <Layer queryable="0" opaque="0" cascaded="0">
+        <Name>road_network</Name>
+        <Title>Road network</Title>
+        <Abstract>The Road network layer represents road segments, including ferries, used for travel by land vehicles.</Abstract>
+        <SRS>EPSG:4269</SRS>
+    </Layer>
+    <Layer queryable="0" opaque="0" cascaded="0">
+        <Name>railway</Name>
+        <Title>Railway</Title>
+        <Abstract>The Railway layer represents the various structures required for the movement of trains and other rail-based vehicles.</Abstract>
+        <SRS>EPSG:4269</SRS>
+    </Layer>
+    <Layer queryable="0" opaque="0" cascaded="0">
+        <Name>aeronautical_network</Name>
+        <Title>Aeronautical features</Title>
+        <Abstract>.</Abstract>
+        <SRS>EPSG:4269</SRS>
+    </Layer>
+    <Layer queryable="0" opaque="0" cascaded="0">
+        <Name>structures</Name>
+        <Title>Structures</Title>
+        <Abstract>The Structures layer represents manmade structures, including bridges, tunnels and footbridges used for travel by land vehicles, trains or individuals.</Abstract>
+        <SRS>EPSG:4269</SRS>
+    </Layer>
+    <Layer queryable="0" opaque="0" cascaded="0">
+        <Name>power_network</Name>
+        <Title>Power network</Title>
+        <Abstract>The Power network layer represents the main structures used to transport electricity, oil and gas.</Abstract>
+        <SRS>EPSG:4269</SRS>
+    </Layer>
+    <Layer queryable="0" opaque="0" cascaded="0">
+        <Name>boundaries</Name>
+        <Title>Boundaries</Title>
+        <Abstract>.</Abstract>
+        <SRS>EPSG:4269</SRS>
+    </Layer>
+    <Layer queryable="0" opaque="0" cascaded="0">
+        <Name>feature_names</Name>
+        <Title>Feature names</Title>
+        <Abstract>The Feature names layer describes the official names assigned to various topographical phenomenons.</Abstract>
+        <SRS>EPSG:4269</SRS>
+    </Layer>
+    </Layer>
+  </Layer>
+</Capability>
+</WMT_MS_Capabilities>

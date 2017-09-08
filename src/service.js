@@ -16,7 +16,7 @@ const select = xpath.useNamespaces({
  */
 
 /**
- * @typedef {('1.0.0'|'1.3.0')} ServiceVersion
+ * @typedef {('1.0.0'|'1.3.0'|'1.1.0'|'1.1.1')} ServiceVersion
  */
 
 /**
@@ -36,9 +36,21 @@ const select = xpath.useNamespaces({
  */
 module.exports = function (xml) {
   const doc = createDocument(xml)
-  const type = select('string(//ows:ServiceType)', doc, true)
-  const version = select('string(//ows:ServiceTypeVersion)', doc, true)
-  const title = select('string(//ows:Title)', doc, true)
+  var type
+  var version
+  var title
+
+  // WMS
+  if (select('//WMT_MS_Capabilities', doc)) {
+    type = 'OGC WMS'
+    version = select('string(//WMT_MS_Capabilities/@version)', doc, true)
+    title = select('string(//Service/Title)', doc, true)
+  // WMTS
+  } else {
+    type = select('string(//ows:ServiceType)', doc, true)
+    version = select('string(//ows:ServiceTypeVersion)', doc, true)
+    title = select('string(//ows:Title)', doc, true)
+  }
 
   return {
     type: type || null,

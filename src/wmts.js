@@ -39,7 +39,6 @@ const select = xpath.useNamespaces({
  * @property {string} identifier
  * @property {string} format
  * @property {string} abstract
- * @property {string} resourceURL
  * @property {number} minzoom
  * @property {number} maxzoom
  * @property {BBox} bbox
@@ -62,6 +61,7 @@ const select = xpath.useNamespaces({
  * @property {string} getCapabilities
  * @property {string} getTile
  * @property {string} resourceURL
+ * @property {string} slippy
  * @property {string} host
  */
 
@@ -124,7 +124,8 @@ function url (doc) {
   const parse = URL.parse(getCapabilities)
 
   // Create Resource URL from KVP params
-  if (resourceURL === '' && getTile) {
+  var slippy
+  if (getTile) {
     const kvp = URL.parse(getTile)
     kvp.search = null
     kvp.query = {
@@ -139,9 +140,10 @@ function url (doc) {
       tilecol: '{TileCol}',
       format: '{Format}'
     }
-    resourceURL = URL.format(kvp).replace(/%7B/g, '{').replace(/%7D/g, '}')
+    slippy = URL.format(kvp).replace(/%7B/g, '{').replace(/%7D/g, '}')
   }
   return {
+    slippy: slippy || null,
     resourceURL: resourceURL || null,
     getCapabilities: getCapabilities || null,
     getTile: getTile || null,

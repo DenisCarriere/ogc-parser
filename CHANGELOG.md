@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.4.0 - 2017-09-08
+
+- Add WMS basic support
+- Add WMS XML tests files
+- Improve Typescript definition
+
 ## 1.3.0 - 2017-09-07
 
 - Add GeoServer & MapProxy to tests

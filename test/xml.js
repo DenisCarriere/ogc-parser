@@ -14,6 +14,9 @@ module.exports = {
   mapbox: {
     wmts: fs.readFileSync(folder('mapbox-wmts.xml'), 'utf8')
   },
+  toporama: {
+    wms: fs.readFileSync(folder('toporama-wms.xml'), 'utf8')
+  },
   mapProxy: {
     wmtsKvp: fs.readFileSync(folder('mapProxy-wmtsKvp.xml'), 'utf8'),
     wmtsRestful: fs.readFileSync(folder('mapProxy-wmtsRestful.xml'), 'utf8')
