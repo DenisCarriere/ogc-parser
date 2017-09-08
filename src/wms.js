@@ -10,6 +10,10 @@ const select = xpath.useNamespaces({
 })
 
 /**
+ * @typedef {'png'|'jpg'} Format
+ */
+
+/**
  * @typedef {[number, number, number, number]} BBox
  */
 
@@ -36,7 +40,8 @@ const select = xpath.useNamespaces({
  * @typedef {Object} Layer
  * @property {string} title
  * @property {string} identifier
- * @property {string} format
+ * @property {Format} format
+ * @property {string[]} formats
  * @property {string} abstract
  * @property {number} minzoom
  * @property {number} maxzoom
@@ -65,15 +70,30 @@ const select = xpath.useNamespaces({
 /**
  * Select BBox
  *
- * @param {Document} node
+ * @param {Document} doc
  * @returns {BBox} BBox
  */
-function selectBBox (node) {
+function selectBBox (doc) {
+  var west
+  var south
+  var east
+  var north
+
+  // WMS 1.1
   // <LatLonBoundingBox minx="-141" miny="41" maxx="-52" maxy="84" />
-  const west = select('string(//LatLonBoundingBox/@minx)', node, true)
-  const south = select('string(//LatLonBoundingBox/@miny)', node, true)
-  const east = select('string(//LatLonBoundingBox/@maxx)', node, true)
-  const north = select('string(//LatLonBoundingBox/@maxy)', node, true)
+  if (select('//LatLonBoundingBox', doc).length) {
+    west = select('string(//LatLonBoundingBox/@minx)', doc, true)
+    south = select('string(//LatLonBoundingBox/@miny)', doc, true)
+    east = select('string(//LatLonBoundingBox/@maxx)', doc, true)
+    north = select('string(//LatLonBoundingBox/@maxy)', doc, true)
+  // WMS 1.3
+  // <BoundingBox CRS="CRS:84" minx="-71.63" miny="41.75" maxx="-70.78" maxy="42.90" resx="0.01" resy="0.01"/>
+  } else if (select('//BoundingBox', doc).length) {
+    west = select('string(//BoundingBox[@CRS="CRS:84"]/@minx)', doc, true)
+    south = select('string(//BoundingBox[@CRS="CRS:84"]/@miny)', doc, true)
+    east = select('string(//BoundingBox[@CRS="CRS:84"]/@maxx)', doc, true)
+    north = select('string(//BoundingBox[@CRS="CRS:84"]/@maxy)', doc, true)
+  }
 
   if (south && west && north && east) {
     return [Number(west), Number(south), Number(east), Number(north)]
@@ -91,14 +111,25 @@ function layer (doc) {
   const title = select('string(//Service/Title)', doc, true)
   const identifier = select('string(//Layer/Name)', doc, true)
   const abstract = select('string(//Service/Abstract)', doc, true)
-  const format = select('string(//GetMap/Format)', doc, true)
   const bbox = selectBBox(doc)
+
+  // WMS 1.1 & 1.3
+  const formats = select('//GetMap/Format', doc).map(format => format.textContent)
+
+  // WMS 1.0
+  if (select('//Format/PNG', doc, true)) formats.push('image/png')
+  if (select('//Format/JPEG', doc, true)) formats.push('image/jpeg')
+
+  var format
+  if (formats.indexOf('image/png') !== -1) format = 'png'
+  else if (formats.indexOf('image/jpeg') !== -1) format = 'jpg'
 
   return {
     title: title || null,
     abstract: abstract || null,
     identifier: identifier || null,
     format: format || null,
+    formats: formats,
     bbox: bbox,
     minzoom: 0,
     maxzoom: 19
@@ -113,33 +144,36 @@ function layer (doc) {
  */
 function url (doc) {
   const onlineResource = select('string(//OnlineResource/@xlink:href)', doc, true)
-  const url = URL.parse(onlineResource)
   const version = service(doc).version
+  const url = URL.parse(onlineResource)
 
   // Create Slippy URL
-  url.search = null
-  url.query = {
-    service: 'WMS',
-    request: 'GetMap',
-    version: version,
-    layers: '{Layer}',
-    transparent: 'false',
-    format: '{format}',
-    height: '{height}',
-    width: '{width}',
-    srs: '{srs}',
-    bbox: '{bbox}'
-  }
-  const slippy = URL.format(url).replace(/%7B/g, '{').replace(/%7D/g, '}')
+  var slippy
+  var getCapabilities
+  if (onlineResource) {
+    url.search = null
+    url.query = {
+      service: 'WMS',
+      request: 'GetMap',
+      version: version,
+      layers: '{Layer}',
+      transparent: 'false',
+      format: '{format}',
+      height: '{height}',
+      width: '{width}',
+      srs: '{srs}',
+      bbox: '{bbox}'
+    }
+    slippy = URL.format(url).replace(/%7B/g, '{').replace(/%7D/g, '}')
 
-  // Create RESTful GetCapabilities
-  url.query = {
-    service: 'WMS',
-    request: 'GetCapabilities',
-    version: version
+    // Create RESTful GetCapabilities
+    url.query = {
+      service: 'WMS',
+      request: 'GetCapabilities',
+      version: version
+    }
+    getCapabilities = URL.format(url).replace(/%7B/g, '{').replace(/%7D/g, '}')
   }
-  const getCapabilities = URL.format(url).replace(/%7B/g, '{').replace(/%7D/g, '}')
-
   return {
     slippy: slippy || null,
     onlineResource: onlineResource || null,

@@ -1,0 +1,23 @@
+{
+	"service": {
+		"type": null,
+		"version": null,
+		"title": null
+	},
+	"layer": {
+		"title": null,
+		"abstract": null,
+		"identifier": null,
+		"format": null,
+		"formats": [],
+		"bbox": null,
+		"minzoom": 0,
+		"maxzoom": 19
+	},
+	"url": {
+		"slippy": null,
+		"onlineResource": null,
+		"getCapabilities": null,
+		"host": null
+	}
+}

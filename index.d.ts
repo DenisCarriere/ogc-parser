@@ -1,9 +1,11 @@
 type BBox = [number, number, number, number]
+type Format = 'jpg' | 'png'
 
 interface Layer {
   title: string
   identifier: string
-  format: string
+  format: Format
+  formats: string[]
   abstract: string
   minzoom: number
   maxzoom: number

@@ -48,7 +48,7 @@ defined. -->
   <Request>
     <Map>
       <Format>
-	<SGI />
+	      <SGI />
         <GIF />
         <JPEG />
         <PNG />
@@ -108,7 +108,7 @@ defined. -->
     <Title>Acme Corp. Map Server</Title>
     <SRS>EPSG:4326</SRS> <!-- all layers are available in at least this SRS -->
     <Layer queryable="0">
-      <Name>wmt_graticule</Name> 
+      <Name>wmt_graticule</Name>
       <Title>Alignment test grid</Title>
       <Abstract>The WMT Graticule is a 10-degree grid suitable for testing alignment among Map Servers.</Abstract>
       <Keywords>graticule test</Keywords>
@@ -126,10 +126,10 @@ defined. -->
     </Layer>
     <Layer>
       <!-- This parent layer has a Name and can therefore be requested from a Map Server, yielding a map of all subsidiary layers. -->
-      <Name>ROADS_RIVERS</Name> 
+      <Name>ROADS_RIVERS</Name>
       <Title>Roads and Rivers</Title>
       <!-- The following characteristics are inherited by subsidiary layers. -->
-      <SRS>EPSG:26986</SRS> <!-- An additional SRS for this layer --> 
+      <SRS>EPSG:26986</SRS> <!-- An additional SRS for this layer -->
       <LatLonBoundingBox minx="-71.634696" miny="41.754149" maxx="-70.789798" maxy="42.908459"/>
       <BoundingBox SRS="EPSG:26986" minx="189000" miny="834000" maxx="285000" maxy="962000"/>
       <Style>
@@ -140,7 +140,7 @@ defined. -->
       </Style>
       <ScaleHint min="4000" max="35000"></ScaleHint>
       <Layer queryable="1">
-	<Name>ROADS_1M</Name> 
+	<Name>ROADS_1M</Name>
 	<Title>Roads at 1:1M scale</Title>
 	<Abstract>Roads at a scale of 1 to 1 million.</Abstract>
 	<Keywords>road transportation atlas</Keywords>
@@ -170,15 +170,15 @@ defined. -->
         <Abstract>Weather Data are only available in a single default style.</Abstract>
       </Style>
       <Layer>
-	<Name>Clouds</Name> 
+	<Name>Clouds</Name>
 	<Title>Forecast cloud cover</Title>
        </Layer>
       <Layer>
-	<Name>Temperature</Name> 
+	<Name>Temperature</Name>
 	<Title>Forecast temperature</Title>
        </Layer>
       <Layer>
-	<Name>Pressure</Name> 
+	<Name>Pressure</Name>
 	<Title>Forecast barometric pressure</Title>
        </Layer>
     </Layer>

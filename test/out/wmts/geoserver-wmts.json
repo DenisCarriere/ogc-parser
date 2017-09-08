@@ -8,7 +8,11 @@
 		"title": "sfdem",
 		"abstract": null,
 		"identifier": "mbtiles:sfdem",
-		"format": "image/png",
+		"format": "png",
+		"formats": [
+			"image/png",
+			"image/jpeg"
+		],
 		"bbox": [
 			-103.87100615361028,
 			44.37021187004214,

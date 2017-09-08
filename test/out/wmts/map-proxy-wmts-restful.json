@@ -8,7 +8,10 @@
 		"title": "Omniscale OSM WMS - osm.omniscale.net",
 		"abstract": null,
 		"identifier": "osm",
-		"format": "image/png",
+		"format": "png",
+		"formats": [
+			"image/png"
+		],
 		"bbox": [
 			-180,
 			-85.0511287798,

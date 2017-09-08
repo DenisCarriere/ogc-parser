@@ -11,6 +11,10 @@ const select = xpath.useNamespaces({
 })
 
 /**
+ * @typedef {'png'|'jpg'} Format
+ */
+
+/**
  * @typedef {[number, number, number, number]} BBox
  */
 
@@ -37,7 +41,8 @@ const select = xpath.useNamespaces({
  * @typedef {Object} Layer
  * @property {string} title
  * @property {string} identifier
- * @property {string} format
+ * @property {Format} format
+ * @property {string[]} formats
  * @property {string} abstract
  * @property {number} minzoom
  * @property {number} maxzoom
@@ -92,17 +97,21 @@ function layer (doc) {
   const title = select('string(//Layer/ows:Title)', doc, true)
   const identifier = select('string(//Layer/ows:Identifier)', doc, true)
   const abstract = select('string(//Layer/ows:Abstract)', doc, true)
-  const format = select('string(//Layer/Format)', doc, true)
+  const formats = select('//Layer/Format', doc).map(format => format.textContent)
   const bbox = selectBBox(doc)
   const zooms = zoomLevels(doc)
   const tileMatrixSets = zooms.tileMatrixSets
   const maxzoom = zooms.maxzoom
   const minzoom = zooms.minzoom
+  var format
+  if (formats.indexOf('image/png') !== -1) format = 'png'
+  else if (formats.indexOf('image/jpeg') !== -1) format = 'jpg'
   return {
     title: title || null,
     abstract: abstract || null,
     identifier: identifier || null,
     format: format || null,
+    formats: formats,
     bbox: bbox,
     minzoom: minzoom,
     maxzoom: maxzoom,

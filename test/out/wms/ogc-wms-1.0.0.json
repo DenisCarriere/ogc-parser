@@ -1,0 +1,30 @@
+{
+	"service": {
+		"type": "OGC WMS",
+		"version": "1.0.0",
+		"title": "Acme Corp. Map Server"
+	},
+	"layer": {
+		"title": "Acme Corp. Map Server",
+		"abstract": "WMT Map Server maintained by Acme Corporation.  Contact: webmaster@wmt.acme.com.  High-quality maps showing roadrunner nests and possible ambush locations.",
+		"identifier": "wmt_graticule",
+		"format": "png",
+		"formats": [
+			"image/png"
+		],
+		"bbox": [
+			-180,
+			-90,
+			180,
+			90
+		],
+		"minzoom": 0,
+		"maxzoom": 19
+	},
+	"url": {
+		"slippy": null,
+		"onlineResource": null,
+		"getCapabilities": null,
+		"host": null
+	}
+}

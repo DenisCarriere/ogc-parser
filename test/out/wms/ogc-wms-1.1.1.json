@@ -1,0 +1,32 @@
+{
+	"service": {
+		"type": "OGC WMS",
+		"version": "1.1.1",
+		"title": "Acme Corp. Map Server"
+	},
+	"layer": {
+		"title": "Acme Corp. Map Server",
+		"abstract": "WMT Map Server maintained by Acme Corporation.  Contact: webmaster@wmt.acme.com.  High-quality maps showing roadrunner nests and possible ambush locations.",
+		"identifier": "ROADS_RIVERS",
+		"format": "png",
+		"formats": [
+			"image/gif",
+			"image/png",
+			"image/jpeg"
+		],
+		"bbox": [
+			-71.63,
+			41.75,
+			-70.78,
+			42.9
+		],
+		"minzoom": 0,
+		"maxzoom": 19
+	},
+	"url": {
+		"slippy": "http://hostname/?service=WMS&request=GetMap&version=1.1.1&layers={Layer}&transparent=false&format={format}&height={height}&width={width}&srs={srs}&bbox={bbox}",
+		"onlineResource": "http://hostname/",
+		"getCapabilities": "http://hostname/?service=WMS&request=GetCapabilities&version=1.1.1",
+		"host": "hostname"
+	}
+}

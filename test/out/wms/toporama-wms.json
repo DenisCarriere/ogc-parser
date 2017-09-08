@@ -1,0 +1,33 @@
+{
+	"service": {
+		"type": "OGC WMS",
+		"version": "1.1.1",
+		"title": "WMS-Toporama"
+	},
+	"layer": {
+		"title": "WMS-Toporama",
+		"abstract": "The Toporama Web Map Service (Toporama WMS) of the Earth Sciences Sector (ESS) at Natural Resources Canada (NRCan) is an Internet service that is intended mainly for online map application users and developers. This service is compatible with OpenGIS� Consortium (OGC) (http://www.opengeospatial.org/) Web Map Service standards and specifications, version 1.1.1. Toporama WMS can be accessed at no cost and without restrictions according to the terms of the Open Government Licence - Canada (http://open.canada.ca/en/open-government-licence-canada). This service can be used to build a customized map using the best baseline data from the ESS for a given scale. These data are known for being accurate and up-to-date. They are grouped together under 15 information themes developed, depending on the scale, using CanVec 1:50,000, the National Topographic Data Base (NTDB) 1:250,000 and baseline data from the Atlas of Canada.\n  ",
+		"identifier": "WMS-Toporama",
+		"format": "jpg",
+		"formats": [
+			"image/jpeg",
+			"image/png; mode=24bit",
+			"image/gif",
+			"image/wbmp"
+		],
+		"bbox": [
+			-141,
+			41,
+			-52,
+			84
+		],
+		"minzoom": 0,
+		"maxzoom": 19
+	},
+	"url": {
+		"slippy": "http://maps.geogratis.gc.ca/wms/toporama_en?service=WMS&request=GetMap&version=1.1.1&layers={Layer}&transparent=false&format={format}&height={height}&width={width}&srs={srs}&bbox={bbox}",
+		"onlineResource": "http://maps.geogratis.gc.ca/wms/toporama_en?",
+		"getCapabilities": "http://maps.geogratis.gc.ca/wms/toporama_en?service=WMS&request=GetCapabilities&version=1.1.1",
+		"host": "maps.geogratis.gc.ca"
+	}
+}

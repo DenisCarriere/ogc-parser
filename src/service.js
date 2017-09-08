@@ -40,10 +40,15 @@ module.exports = function (xml) {
   var version
   var title
 
-  // WMS
+  // WMS 1.0 & 1.1
   if (select('//WMT_MS_Capabilities', doc).length) {
     type = 'OGC WMS'
     version = select('string(//WMT_MS_Capabilities/@version)', doc, true)
+    title = select('string(//Service/Title)', doc, true)
+  // WMS 1.3
+  } else if (select('//WMS_Capabilities', doc).length) {
+    type = 'OGC WMS'
+    version = select('string(//WMS_Capabilities/@version)', doc, true)
     title = select('string(//Service/Title)', doc, true)
   // WMTS
   } else {

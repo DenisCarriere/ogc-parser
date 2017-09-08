@@ -1,0 +1,31 @@
+{
+	"service": {
+		"type": "OGC WMS",
+		"version": "1.1.1",
+		"title": "Web Map Service - GeoWebCache"
+	},
+	"layer": {
+		"title": "Web Map Service - GeoWebCache",
+		"abstract": null,
+		"identifier": "mbtiles:sfdem",
+		"format": "png",
+		"formats": [
+			"image/png",
+			"image/jpeg"
+		],
+		"bbox": [
+			-180,
+			-90,
+			180,
+			90
+		],
+		"minzoom": 0,
+		"maxzoom": 19
+	},
+	"url": {
+		"slippy": "http://localhost:8080/geoserver/gwc/service/wms?service=WMS&request=GetMap&version=1.1.1&layers={Layer}&transparent=false&format={format}&height={height}&width={width}&srs={srs}&bbox={bbox}",
+		"onlineResource": "http://localhost:8080/geoserver/gwc/service/wms?SERVICE=WMS&",
+		"getCapabilities": "http://localhost:8080/geoserver/gwc/service/wms?service=WMS&request=GetCapabilities&version=1.1.1",
+		"host": "localhost:8080"
+	}
+}

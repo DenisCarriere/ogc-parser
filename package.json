@@ -26,6 +26,7 @@
     "scheme"
   ],
   "devDependencies": {
+    "glob": "^7.1.2",
     "load-json-file": "^3.0.0",
     "standard": "^8.6.0",
     "tap": "^10.7.2",

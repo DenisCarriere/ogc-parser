@@ -8,7 +8,10 @@
 		"title": "Satellite Streets",
 		"abstract": "© OSM, © DigitalGlobe",
 		"identifier": "ciy23jhla008n2soz34kg2p4u",
-		"format": "image/jpeg",
+		"format": "jpg",
+		"formats": [
+			"image/jpeg"
+		],
 		"bbox": [
 			-180,
 			-85.051129,

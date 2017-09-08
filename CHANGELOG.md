@@ -2,6 +2,8 @@
 
 ## 1.4.0 - 2017-09-08
 
+- Handle `format` as `jpg` or `png`
+- Add `formats` to `layer`
 - Add WMS basic support
 - Add WMS XML tests files
 - Improve Typescript definition

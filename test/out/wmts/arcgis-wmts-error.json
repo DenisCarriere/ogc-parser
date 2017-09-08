@@ -9,6 +9,7 @@
 		"abstract": null,
 		"identifier": null,
 		"format": null,
+		"formats": [],
 		"bbox": null,
 		"minzoom": null,
 		"maxzoom": null,

@@ -8,7 +8,10 @@
 		"title": "World_Imagery",
 		"abstract": null,
 		"identifier": "World_Imagery",
-		"format": "image/jpeg",
+		"format": "jpg",
+		"formats": [
+			"image/jpeg"
+		],
 		"bbox": [
 			-179.99999000000003,
 			-85.00000000000003,
