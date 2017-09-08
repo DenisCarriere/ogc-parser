@@ -10,7 +10,8 @@
 		"identifier": "wmt_graticule",
 		"format": "png",
 		"formats": [
-			"image/png"
+			"image/png",
+			"image/jpeg"
 		],
 		"bbox": [
 			-180,
