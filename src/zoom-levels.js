@@ -104,30 +104,29 @@ const select = xpath.useNamespaces({
 module.exports = function (xml) {
   const doc = createDocument(xml)
   const tileMatrix = []
-  const tileMatrixSets = []
   var minzoom
   var maxzoom
 
-  for (const tileMatrixSet of select('//TileMatrixSet/ows:Identifier', doc)) {
-    tileMatrixSets.push(tileMatrixSet.textContent)
-  }
+  const tileMatrixSets = select('//TileMatrixSet/ows:Identifier', doc).map(tileMatrixSet => {
+    return tileMatrixSet.textContent
+  })
 
   // Support GoogleMapsCompatible
-  for (const TileMatrix of select('//TileMatrixSet[ows:Identifier="GoogleMapsCompatible"]/./TileMatrix/ows:Identifier', doc)) {
+  select('//TileMatrixSet[ows:Identifier="GoogleMapsCompatible"]/./TileMatrix/ows:Identifier', doc).forEach(TileMatrix => {
     const identifier = TileMatrix.textContent
     tileMatrix.push(identifier)
     const zoom = Number(identifier)
-    if (zoom < minzoom || minzoom === undefined) minzoom = zoom
-    if (zoom > maxzoom || maxzoom === undefined) maxzoom = zoom
-  }
+    if (zoom <= minzoom || minzoom === undefined) minzoom = zoom
+    if (zoom >= maxzoom || maxzoom === undefined) maxzoom = zoom
+  })
   // Support EPSG:900913 (Google Projection)
-  for (const TileMatrix of select('//TileMatrixSet[ows:Identifier="EPSG:900913"]/./TileMatrix/ows:Identifier', doc)) {
+  select('//TileMatrixSet[ows:Identifier="EPSG:900913"]/./TileMatrix/ows:Identifier', doc).forEach(TileMatrix => {
     const identifier = TileMatrix.textContent
     tileMatrix.push(identifier)
     const zoom = Number(identifier.replace('EPSG:900913:', ''))
     if (zoom < minzoom || minzoom === undefined) minzoom = zoom
     if (zoom > maxzoom || maxzoom === undefined) maxzoom = zoom
-  }
+  })
   return {
     // tileMatrix: tileMatrix,
     tileMatrixSets: tileMatrixSets,
