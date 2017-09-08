@@ -41,8 +41,7 @@ test('wmts -- ArcGIS Online', t => {
   t.deepEqual(metadata.layer.tileMatrixSets, ['default028mm', 'GoogleMapsCompatible'], 'arcgis.layer.tileMatrixSets')
 
   // URL
-  t.equal(metadata.url.resourceURL, 'https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/WMTS/tile/1.0.0/World_Imagery/{Style}/{TileMatrixSet}/{TileMatrix}/{TileRow}/{TileCol}.jpg', 'arcgis.url.resourceURL')
-  t.equal(metadata.url.getTile, 'https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/WMTS/tile/1.0.0/', 'arcgis.url.getTile')
+  t.equal(metadata.url.slippy, 'https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/WMTS/tile/1.0.0/World_Imagery/{Style}/{TileMatrixSet}/{TileMatrix}/{TileRow}/{TileCol}.jpg', 'arcgis.url.resourceURL')
   t.equal(metadata.url.getCapabilities, 'https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/WMTS/1.0.0/WMTSCapabilities.xml', 'arcgis.url.getCapabilities')
   t.equal(metadata.url.host, 'services.arcgisonline.com', 'arcgis.url.host')
   t.end()
@@ -66,8 +65,8 @@ test('wmts -- Mapbox Studio', t => {
   t.deepEqual(metadata.layer.tileMatrixSets, ['GoogleMapsCompatible'], 'mapbox.layer.tileMatrixSets')
 
   // URL
+  t.equal(metadata.url.slippy, 'https://api.mapbox.com/styles/v1/addxy/ciy23jhla008n2soz34kg2p4u/tiles/{TileMatrix}/{TileCol}/{TileRow}?access_token=pk.eyJ1IjoiYWRkeHkiLCJhIjoiY2lsdmt5NjZwMDFsdXZka3NzaGVrZDZtdCJ9.ZUE-LebQgHaBduVwL68IoQ', 'mapbox.url.slippy')
   t.equal(metadata.url.resourceURL, 'https://api.mapbox.com/styles/v1/addxy/ciy23jhla008n2soz34kg2p4u/tiles/{TileMatrix}/{TileCol}/{TileRow}?access_token=pk.eyJ1IjoiYWRkeHkiLCJhIjoiY2lsdmt5NjZwMDFsdXZka3NzaGVrZDZtdCJ9.ZUE-LebQgHaBduVwL68IoQ', 'mapbox.url.resourceURL')
-  t.equal(metadata.url.getTile, 'https://api.mapbox.com/styles/v1/addxy/ciy23jhla008n2soz34kg2p4u/wmts?access_token=pk.eyJ1IjoiYWRkeHkiLCJhIjoiY2lsdmt5NjZwMDFsdXZka3NzaGVrZDZtdCJ9.ZUE-LebQgHaBduVwL68IoQ', 'mapbox.url.getTile')
   t.equal(metadata.url.getCapabilities, 'https://api.mapbox.com/styles/v1/addxy/ciy23jhla008n2soz34kg2p4u/wmts?access_token=pk.eyJ1IjoiYWRkeHkiLCJhIjoiY2lsdmt5NjZwMDFsdXZka3NzaGVrZDZtdCJ9.ZUE-LebQgHaBduVwL68IoQ', 'mapbox.url.getCapabilities')
   t.equal(metadata.url.host, 'api.mapbox.com', 'mapbox.url.host')
   t.end()

@@ -41,7 +41,7 @@ module.exports = function (xml) {
   var title
 
   // WMS
-  if (select('//WMT_MS_Capabilities', doc)) {
+  if (select('//WMT_MS_Capabilities', doc).length) {
     type = 'OGC WMS'
     version = select('string(//WMT_MS_Capabilities/@version)', doc, true)
     title = select('string(//Service/Title)', doc, true)

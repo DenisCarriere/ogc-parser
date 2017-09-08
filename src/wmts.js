@@ -124,8 +124,8 @@ function url (doc) {
   const parse = URL.parse(getCapabilities)
 
   // Create Resource URL from KVP params
-  var slippy
-  if (getTile) {
+  var slippy = resourceURL
+  if (resourceURL === '' && getTile) {
     const kvp = URL.parse(getTile)
     kvp.search = null
     kvp.query = {

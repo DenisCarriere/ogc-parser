@@ -22,6 +22,7 @@
 		]
 	},
 	"url": {
+		"slippy": "http://localhost:8080/wmts/osm/{TileMatrixSet}/{TileMatrix}/{TileCol}/{TileRow}.png",
 		"resourceURL": "http://localhost:8080/wmts/osm/{TileMatrixSet}/{TileMatrix}/{TileCol}/{TileRow}.png",
 		"getCapabilities": "http://localhost:8080/wmts/1.0.0/WMTSCapabilities.xml",
 		"getTile": null,
