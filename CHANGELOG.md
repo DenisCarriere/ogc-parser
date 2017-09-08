@@ -2,6 +2,7 @@
 
 ## 1.3.0 - 2017-09-07
 
+- Add GeoServer & MapProxy to tests
 - Improved tileMatrixSets handling
 - Fix ArcGIS zoom levels
 - Only support GoogleMapsCompatible
