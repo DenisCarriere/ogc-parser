@@ -19,11 +19,11 @@ const select = xpath.useNamespaces({
  */
 
 /**
- * @typedef {('OGC WMTS'|'OGC WMS')} ServiceType
+ * @typedef {'OGC WMTS'|'OGC WMS'} ServiceType
  */
 
 /**
- * @typedef {('1.0.0'|'1.3.0')} ServiceVersion
+ * @typedef {'1.0.0'|'1.3.0'} ServiceVersion
  */
 
 /**
@@ -59,7 +59,7 @@ const select = xpath.useNamespaces({
  * @property {string} title
  */
 
- /**
+/**
  * WMTS Metadata.Layer.URL
  *
  * @typedef {Object} URL
