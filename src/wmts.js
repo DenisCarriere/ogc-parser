@@ -88,16 +88,31 @@ function selectBBox (node) {
 }
 
 /**
+ * Parse Contents Layer
+ *
+ * @param {Document} 
+ * @returns {Layer} layer[]
+ */
+function layers(doc){
+  const out=[];
+  const layers = select('//Contents/Layer', doc);
+  layers.forEach(l =>{
+    out.push(layer(l));
+  });
+  return out;
+}
+
+/**
  * Parse Layer
  *
  * @param {Document} doc
  * @returns {Layer} layer
  */
 function layer (doc) {
-  const title = select('string(//Layer/ows:Title)', doc, true)
-  const identifier = select('string(//Layer/ows:Identifier)', doc, true)
-  const abstract = select('string(//Layer/ows:Abstract)', doc, true)
-  const formats = select('//Layer/Format', doc).map(format => format.textContent)
+  const title = select('string(./ows:Title)', doc, true)
+  const identifier = select('string(./ows:Identifier)', doc, true)
+  const abstract = select('string(./ows:Abstract)', doc, true)
+  const formats = select('./Format', doc).map(format => format.textContent)
   const bbox = selectBBox(doc)
   const zooms = zoomLevels(doc)
   const tileMatrixSets = zooms.tileMatrixSets
@@ -170,7 +185,7 @@ module.exports = function (xml) {
   const doc = createDocument(xml)
   return {
     service: service(doc),
-    layer: layer(doc),
+    layer: layers(doc),
     url: url(doc)
   }
 }
