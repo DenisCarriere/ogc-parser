@@ -26,6 +26,8 @@ const select = xpath.useNamespaces({
  * @property {ServiceType} type
  * @property {ServiceVersion} version
  * @property {string} title
+ * @property {string} abstract
+ * @property {string} fees
  */
 
 /**
@@ -39,27 +41,33 @@ module.exports = function (xml) {
   var type
   var version
   var title
+  var abstract
+  var fees
 
   // WMS 1.0 & 1.1
   if (select('//WMT_MS_Capabilities', doc).length) {
     type = 'OGC WMS'
     version = select('string(//WMT_MS_Capabilities/@version)', doc, true)
     title = select('string(//Service/Title)', doc, true)
-  // WMS 1.3
+    // WMS 1.3
   } else if (select('//WMS_Capabilities', doc).length) {
     type = 'OGC WMS'
     version = select('string(//WMS_Capabilities/@version)', doc, true)
     title = select('string(//Service/Title)', doc, true)
-  // WMTS
+    // WMTS
   } else {
     type = select('string(//ows:ServiceType)', doc, true)
     version = select('string(//ows:ServiceTypeVersion)', doc, true)
     title = select('string(//ows:Title)', doc, true)
+    abstract = select('string(//ows:Abstract)', doc, true)
+    fees = select('string(//ows:Fees)', doc, true)
   }
 
   return {
     type: type || null,
     version: version || null,
-    title: title || null
+    title: title || null,
+    abstract: abstract || null,
+    fees: fees || null
   }
 }
