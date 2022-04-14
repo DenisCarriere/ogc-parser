@@ -57,6 +57,8 @@ const select = xpath.useNamespaces({
  * @property {string} type
  * @property {string} version
  * @property {string} title
+ * @property {string} abstract
+ * @property {string} fees
  */
 
 /**
@@ -90,7 +92,7 @@ function selectBBox (node) {
 /**
  * Parse Contents Layer
  *
- * @param {Document} 
+ * @param {Document}
  * @returns {Layer} layer[]
  */
 function layers(doc){

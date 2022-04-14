@@ -16,6 +16,8 @@ interface Service {
   type: string
   version: string
   title: string
+  abstract: string
+  fees: string
 }
 
 interface Url {
@@ -43,6 +45,8 @@ interface WMTS {
     type: 'OGC WMTS'
     version: '1.0.0'
     title: string
+    abstract: string
+    fees: string
   }
   layer: WMTSLayer,
   url: WMTSUrl
