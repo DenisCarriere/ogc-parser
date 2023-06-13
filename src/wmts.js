@@ -76,7 +76,7 @@ const select = xpath.useNamespaces({
  * @param {Document} node
  * @returns {BBox} BBox
  */
-function selectBBox (node) {
+function selectBBox(node) {
   var southwest = select('string(//ows:WGS84BoundingBox//ows:LowerCorner)', node, true)
   var northeast = select('string(//ows:WGS84BoundingBox//ows:UpperCorner)', node, true)
   if (southwest && northeast) {
@@ -90,13 +90,13 @@ function selectBBox (node) {
 /**
  * Parse Contents Layer
  *
- * @param {Document} 
+ * @param {Document}
  * @returns {Layer} layer[]
  */
-function layers(doc){
-  const out=[];
+function layers(doc) {
+  const out = [];
   const layers = select('//Contents/Layer', doc);
-  layers.forEach(l =>{
+  layers.forEach(l => {
     out.push(layer(l));
   });
   return out;
@@ -108,11 +108,27 @@ function layers(doc){
  * @param {Document} doc
  * @returns {Layer} layer
  */
-function layer (doc) {
+function layer(doc) {
   const title = select('string(./ows:Title)', doc, true)
   const identifier = select('string(./ows:Identifier)', doc, true)
   const abstract = select('string(./ows:Abstract)', doc, true)
   const formats = select('./Format', doc).map(format => format.textContent)
+  var styles = select('./Style/ows:Identifier', doc).map(style =>
+    style.textContent.trim()
+  )
+  var style = select('string(./Style[@isDefault="true"]/ows:Identifier)', doc)
+  if (!style) {
+    if (styles.length) {
+      style = styles[0]
+    } else {
+      style = 'default'
+    }
+  }
+
+  if (!styles.length) {
+    styles.push('default')
+  }
+
   const bbox = selectBBox(doc)
   const zooms = zoomLevels(doc)
   const tileMatrixSets = zooms.tileMatrixSets
@@ -126,11 +142,13 @@ function layer (doc) {
     abstract: abstract || null,
     identifier: identifier || null,
     format: format || null,
-    formats: formats,
-    bbox: bbox,
-    minzoom: minzoom,
-    maxzoom: maxzoom,
-    tileMatrixSets: tileMatrixSets
+    formats,
+    bbox,
+    minzoom,
+    maxzoom,
+    tileMatrixSets,
+    style,
+    styles
   }
 }
 
@@ -140,7 +158,7 @@ function layer (doc) {
  * @param {Document} doc
  * @returns {URL} url
  */
-function url (doc) {
+function url(doc) {
   var resourceURL = select('string(//ResourceURL/@template)', doc, true)
   const getTile = select('string(//ows:Operation[@name="GetTile"]//ows:Get/@xlink:href)', doc, true)
   var getCapabilities = select('string(//ows:Operation[@name="GetCapabilities"]//ows:Get/@xlink:href)', doc, true)
@@ -181,7 +199,7 @@ function url (doc) {
  * @param {string|Document} xml
  * @returns {Metadata} WMTS Metadata
  */
-module.exports = function (xml) {
+module.exports = function(xml) {
   const doc = createDocument(xml)
   return {
     service: service(doc),
